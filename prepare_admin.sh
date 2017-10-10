@@ -6,9 +6,8 @@
 #IPV6 disable;
 
 if [ $# != 2 ]; then 
-echo -e "Enter two parametrs: \"email\" for git, \"name\" for git"
-else
-...
+echo -e "Enter two parametrs: \n\"email\" for git\n\"name\" for git"
+exit 1
 fi
 
 DIR='/admin'
