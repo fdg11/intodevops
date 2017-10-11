@@ -1,0 +1,365 @@
+@import url(reset.css);
+@import url(font-awesome.min.css);
+@font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto.eot);
+    src:
+         url(../fonts/Roboto.eot?#iefix) format('embedded-opentype'),
+         url(../fonts/Roboto.woff) format('woff'),
+         url(../fonts/Roboto.ttf) format('truetype'),
+         url(../fonts/Roboto.svg) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/*Стиль кнопки, вызывающее модальное окно*/
+.linkButton{
+  cursor: pointer;
+}
+/*Стиль фона заполняющего всю область экрана при открытии модального окна*/
+.remodal-overlay{
+  background: rgba(38, 49, 66, 0.95);
+}
+/*Область формы*/
+.formArea {
+  width: 30vmax;
+  margin: 0 auto;
+  padding: 40px 15px 40px 15px;
+  text-align: center;
+  background: #263348;
+  border-radius: 4px;
+  box-shadow: 0 0 50px rgba(2, 19, 48, 0.7);
+  font: 16px 'Roboto', sans-serif;
+}
+
+.formTitle {
+  font-size: 1rem;
+  color: #b8c2d1;
+  margin-bottom: 15px;
+}
+.msgs {
+  font-size: 1rem;
+  color: #E66161;
+  margin-bottom: 15px;
+}
+._success {
+  color: #66bb6a;
+}
+.ui-input {
+  position: relative;
+  padding: 0;
+  border: 0;
+}
+.ui-input input {
+  border: 0;
+  background: none;
+  padding: 16px 0 16px 0;
+  font-size: 1.125rem;
+  outline: 0;
+  width: 100%;
+  tap-highlight-color: transparent;
+  touch-callout: none;
+}
+.ui-input textarea {
+  border: 0;
+  background: none;
+  padding: 16px 0 16px 0;
+  font-size: 1.125rem;
+  outline: 0;
+  width: 100%;
+  tap-highlight-color: transparent;
+  touch-callout: none;
+}
+.ui-input input + label {
+  position: relative;
+  display: block;
+  padding: 8px 0 8px 0;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: .0875em;
+  font-weight: 500;
+  text-align: left;
+}
+.ui-input textarea + label {
+  position: relative;
+  display: block;
+  padding: 8px 0 8px 0;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: .0875em;
+  font-weight: 500;
+  text-align: left;
+}
+.ui-input input + label::before, .ui-input input + label::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 1px;
+}
+.ui-input textarea + label::before, .ui-input input + label::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 1px;
+}
+.ui-input input + label::before {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.ui-input textarea + label::before {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.ui-input input + label::after {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  background-color: #6EB1FF;
+  height: 2px;
+}
+.ui-input textarea + label::after {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  background-color: #6EB1FF;
+  height: 2px;
+}
+.ui-input input + label span {
+  position: relative;
+  color: rgba(255, 255, 255, 0.2);
+  transition: color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.ui-input textarea + label span {
+  position: relative;
+  color: rgba(255, 255, 255, 0.2);
+  transition: color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.ui-input input + label span::after {
+  content: attr(data-text);
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  transform: scaleX(1);
+  white-space: nowrap;
+  color: #fff;
+  background-image: linear-gradient(to right, #4A90E2 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: 100% 50%;
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  backface-visibility: hidden;
+  perspective: 1000mm;
+  transform: translateZ(0);
+  transition: background-position 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.ui-input textarea + label span::after {
+  content: attr(data-text);
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  transform: scaleX(1);
+  white-space: nowrap;
+  color: #fff;
+  background-image: linear-gradient(to right, #4A90E2 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: 100% 50%;
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  backface-visibility: hidden;
+  perspective: 1000mm;
+  transform: translateZ(0);
+  transition: background-position 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.ui-input input:focus + label::after,
+.ui-input input.error + label::after,
+.ui-input input:invalid + label::after,
+.ui-input input.filled + label::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.ui-input input:focus + label span::after,
+.ui-input input.error + label span::after,
+.ui-input input:invalid + label span::after,
+.ui-input input.filled + label span::after {
+  background-image: linear-gradient(to right, white 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: 0% 50%;
+}
+
+.ui-input input.filled {
+  color: #b8c2d1;
+}
+.ui-input input.filled + label::after {
+  background-color: #b8c2d1;
+}
+.ui-input input.filled + label span::after {
+  background-image: linear-gradient(to right, #ffffff 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: 0% 50%;
+}
+
+.ui-input input:focus {
+  color: #6EB1FF;
+}
+.ui-input input:focus + label::after {
+  background-color: #6EB1FF;
+}
+.ui-input input:focus + label span::after {
+  background-image: linear-gradient(to right, #6EB1FF 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: 0% 50%;
+}
+
+.ui-input input.error,
+.ui-input input:invalid {
+  color: #E66161;
+}
+.ui-input input.error + label::after,
+.ui-input input:invalid + label::after {
+  background-color: #E66161;
+}
+.ui-input input.error + label span::after,
+.ui-input input:invalid + label span::after {
+  background-image: linear-gradient(to right, #E66161 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: 0% 50%;
+}
+
+
+
+.ui-input textarea:focus + label::after,
+.ui-input textarea.error + label::after,
+.ui-input textarea:invalid + label::after,
+.ui-input textarea.filled + label::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.ui-input textarea:focus + label span::after,
+.ui-input textarea.error + label span::after,
+.ui-input textarea:invalid + label span::after,
+.ui-input textarea.filled + label span::after {
+  background-image: linear-gradient(to right, white 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: 0% 50%;
+}
+
+.ui-input textarea.filled {
+  color: #b8c2d1;
+}
+.ui-input textarea.filled + label::after {
+  background-color: #b8c2d1;
+}
+.ui-input textarea.filled + label span::after {
+  background-image: linear-gradient(to right, #ffffff 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: 0% 50%;
+}
+
+.ui-input textarea:focus {
+  color: #6EB1FF;
+}
+.ui-input textarea:focus + label::after {
+  background-color: #6EB1FF;
+}
+.ui-input textarea:focus + label span::after {
+  background-image: linear-gradient(to right, #6EB1FF 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: 0% 50%;
+}
+
+.ui-input textarea.error,
+.ui-input textarea:invalid {
+  color: #E66161;
+}
+.ui-input textarea.error + label::after,
+.ui-input textarea:invalid + label::after {
+  background-color: #E66161;
+}
+.ui-input textarea.error + label span::after,
+.ui-input textarea:invalid + label span::after {
+  background-image: linear-gradient(to right, #E66161 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: 0% 50%;
+}
+
+
+
+.form-footer{
+  margin-top: 40px;
+}
+.formBtn {
+  border: 0;
+  cursor: pointer;
+  background-color: #15243b;
+  color: #b8c2d1;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  padding: 20px 0;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: .0875em;
+  font-weight: 500;
+  border-radius: 4px;
+  outline: 0;
+  box-shadow: 0 0 5px rgba(5, 19, 41, 0.5);
+  transition: background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1), color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.formBtn:hover {
+  box-shadow: 0 5px 10px rgba(5, 19, 41, 0.94);
+  transition: .2s;
+  zoom:1.005;
+}
+
+.formCreator{
+  text-align: center;
+  margin-top: 10px;
+}
+.formCreator a{
+  font-size: .8rem;
+  color: #4e596a;
+  text-decoration: none;
+}
+
+.btn:focus, .btn:active,
+.btn:hover {
+  background-color: #6EB1FF;
+  color: white;
+}
+
+.__first, .__second, .__third, .__fourth {
+  animation-name: fadeIn;
+  animation-duration: 180ms;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+}
+
+.__first {
+  animation-delay: 0ms;
+}
+
+.__second {
+  animation-delay: 80ms;
+}
+
+.__third {
+  animation-delay: 180ms;
+}
+
+.__fourth {
+  animation-delay: 360ms;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -25%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1199px) {}
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 991px) {}
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {}
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 486px) {}

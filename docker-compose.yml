@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  gulp:
+    build: nodejs/ 
+    container_name: gulp_serv
+    volumes:
+      - ./workspace/:/workspace
+    ports:
+      - "3000:3000"
+  go:
+    build: golang/
+    container_name: go
+    volumes:
+      - ./workspace:/workspace
+    ports:
+      - "8080:8080"
+  proxy:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx/main.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80" # host:container

@@ -1,0 +1,39 @@
+@import url(reset.css);
+body{
+  font-family: 'Roboto', sans-serif;
+}
+.butWrap{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+}
+.linkButton{
+  display: block;
+  width: 290px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px 0;
+  background: #532446;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  color: #b8c2d1;
+  outline: 0;
+  box-shadow: 0 1px 2px #260c1f;
+  transition: background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1), color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.linkButton:hover {
+  box-shadow: 0 4px 8px #260c1f;
+  transition: .2s;
+  zoom:1.005;
+}
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1199px) {}
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 991px) {}
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {}
+/*Доп запросы*/
+@media only screen and (max-width : 680px) {}
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 486px) {}
+@media only screen and (max-width : 380px) {}
