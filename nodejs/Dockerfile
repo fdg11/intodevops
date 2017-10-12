@@ -23,4 +23,9 @@ RUN npm install -g gulp
 # Define working directory.
 WORKDIR /workspace
 
+ADD ./install.sh /script/install.sh
+
+ENTRYPOINT ["/script/install.sh"]
+
 EXPOSE 3000
+
