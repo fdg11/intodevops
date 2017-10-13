@@ -2,11 +2,11 @@
 
 set -e
 
-DIR=/workspace/node-modules
+count=$(find /workspace -type d -name "node_modules" | wc -l)
 
-if [ -d "$DIR" ]; then
-	gulp dev
-else
+if [ "$count" eq 0 ]; then
 	npm install
+    gulp dev
+else
 	gulp dev
 fi

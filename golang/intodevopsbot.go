@@ -112,14 +112,12 @@ func main() {
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
 
-	// Включаем сервер для теста прописываем роуты
-	server := http.Server{
-		Addr: ":8080",
-	}
+	// Включаем сервер, прописываем роуты
+
 	http.HandleFunc("/", client)
 	http.HandleFunc("/process", process)
 	http.Handle("/modalform/", http.StripPrefix("/modalform/", http.FileServer(http.Dir("/workspace/modalform"))))
-	server.ListenAndServe()
+	log.Fatal(http.ListenAndServe(":8080", nil))
 
 	// используя конфиг u создаем канал в который будут прилетать новые сообщения
 	updates, err := bot.GetUpdatesChan(u)
