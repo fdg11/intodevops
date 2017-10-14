@@ -21,4 +21,4 @@ services:
       - ./workspace:/workspace
       - ./nginx/main.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
-      - "80:80" # host:container
+      - "80:80" # host
