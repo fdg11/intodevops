@@ -2,3 +2,4 @@ golang/Dockerfile
 workspace/node_modules
 **.DS_*
 **package-lock.*
+/.gitignore

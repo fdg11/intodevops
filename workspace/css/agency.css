@@ -270,7 +270,7 @@ header.masthead {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-    background-color: #222222; }
+    background-color: #fff; }
     .portfolio-modal .close-modal .lr .rl {
       /* Safari and Chrome */
       z-index: 1052;
@@ -280,7 +280,7 @@ header.masthead {
       -webkit-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
       transform: rotate(90deg);
-      background-color: #222222; }
+      background-color: #fff; }
 
 .portfolio-modal .modal-backdrop {
   display: none;
