@@ -110,13 +110,17 @@ func chatbot(b *tgbotapi.BotAPI) {
 			continue
 		}
 		// логируем от кого какое сообщение пришло
-		log.Printf("[%s]_[%s]", update.Message.Chat.Title, update.Message.Chat.Type)
-		log.Printf("[%s]", update.Message.From.FirstName)
-		log.Printf("[%d]", update.Message.From.ID)
-		log.Printf("[%d] %s", update.Message.Chat.ID, update.Message.Text)
-		log.Printf("[%s]", strconv.Itoa(i))
-
-
+		log.Printf("Заголовок чата: [%s] Тип чата: [%s]", update.Message.Chat.Title, update.Message.Chat.Type)
+		log.Printf("Имя: [%s]", update.Message.From.FirstName)
+		log.Printf("ID отпровителя: [%d]", update.Message.From.ID)
+		log.Printf("ID чата:[%d] Сообщение: %s", update.Message.Chat.ID, update.Message.Text)
+		log.Printf("№ в очереди: [%s]", strconv.Itoa(i))
+		if update.Message.Document != nil {
+			log.Printf("Имя документа: [%s]", update.Message.Document.FileName)
+		}
+		if update.Message.Sticker != nil {
+			log.Printf("Имя стикера: [%s]", update.Message.Sticker.Emoji)
+		}
 
 		if update.Message.Chat.IsPrivate() {
 			if tmpID[i] != update.Message.Chat.ID {
