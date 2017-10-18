@@ -17,6 +17,8 @@ var (
 	tmpID[10] int64
 	flg bool
 	i int = 0
+	a int
+	usgroup int
 )
 type Config struct {
 	TelegramBotToken string
@@ -114,7 +116,6 @@ func chatbot(b *tgbotapi.BotAPI) {
 		log.Printf("Имя: [%s]", update.Message.From.FirstName)
 		log.Printf("ID отпровителя: [%d]", update.Message.From.ID)
 		log.Printf("ID чата:[%d] Сообщение: %s", update.Message.Chat.ID, update.Message.Text)
-		log.Printf("№ в очереди: [%s]", strconv.Itoa(i))
 		if update.Message.Document != nil {
 			log.Printf("Имя документа: [%s]", update.Message.Document.FileName)
 		}
@@ -126,6 +127,7 @@ func chatbot(b *tgbotapi.BotAPI) {
 			if tmpID[i] != update.Message.Chat.ID {
 				i++
 			}
+			log.Printf("№ в очереди: [%s]", strconv.Itoa(i))
 			tmpID[i] = update.Message.Chat.ID
 			reply = fmt.Sprintf(
 				"*Переадрисовано от:* _%s_ _%s_\n"+"`в очереди: %d`\n\n"+"%s",
@@ -144,21 +146,26 @@ func chatbot(b *tgbotapi.BotAPI) {
 
 			switch update.Message.Command() {
 			case "start":
-				switch update.Message.CommandArguments() {
-				case strconv.Itoa(i):
-					flg = true
-					reply = fmt.Sprintf("*%s*\n"+"*Специалист:* _%s_\n", "Добрый день. С вами общается:",
-						update.Message.From.FirstName)
-					msg := tgbotapi.NewMessage(tmpID[i], reply)
-					msg.ParseMode = "markdown"
-					// отправляем
-					b.Send(msg)
-				default:
-					reply = fmt.Sprintf("`Укажите номер очереди`")
-					msg := tgbotapi.NewMessage(ido, reply)
-					msg.ParseMode = "markdown"
-					// отправляем
-					b.Send(msg)
+				usgroup = update.Message.From.ID
+				for j := 0; j <= len(tmpID); j++ {
+					if update.Message.CommandArguments() == strconv.Itoa(j) {
+						flg = true
+						reply = fmt.Sprintf("*%s*\n"+"*Специалист:* _%s_\n", "Добрый день. С вами общается:",
+							update.Message.From.FirstName)
+						msg := tgbotapi.NewMessage(tmpID[j], reply)
+						msg.ParseMode = "markdown"
+						// отправляем
+						b.Send(msg)
+						a = j
+						break
+					} else if update.Message.CommandArguments() == "" {
+						reply = fmt.Sprintf("`Укажите номер очереди`")
+						msg := tgbotapi.NewMessage(ido, reply)
+						msg.ParseMode = "markdown"
+						// отправляем
+						b.Send(msg)
+						break
+					}
 				}
 			case "stop":
 				if flg {
@@ -184,17 +191,17 @@ func chatbot(b *tgbotapi.BotAPI) {
 				// отправляем
 				b.Send(msg)
 			}
-			if flg {
-				if update.Message.Text == "/start "+strconv.Itoa(i) {
+			if flg && usgroup == update.Message.From.ID {
+				if update.Message.Text == "/start "+strconv.Itoa(a) {
 					continue
 				}
-				msg := tgbotapi.NewMessage(tmpID[i], update.Message.Text)
+				msg := tgbotapi.NewMessage(tmpID[a], update.Message.Text)
 				b.Send(msg)
 				if update.Message.Document != nil {
-					b.Send(tgbotapi.NewDocumentShare(tmpID[i],update.Message.Document.FileID))
+					b.Send(tgbotapi.NewDocumentShare(tmpID[a],update.Message.Document.FileID))
 				}
 				if update.Message.Sticker != nil {
-					b.Send(tgbotapi.NewStickerShare(tmpID[i],update.Message.Sticker.FileID))
+					b.Send(tgbotapi.NewStickerShare(tmpID[a],update.Message.Sticker.FileID))
 				}
 			}
 		}
