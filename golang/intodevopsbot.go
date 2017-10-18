@@ -16,9 +16,9 @@ import (
 var (
 	tmpID[10] int64
 	flg bool
-	i int = 0
-	a int
-	usgroup int
+	count int = 0
+	app int
+	usGroup int
 )
 type Config struct {
 	TelegramBotToken string
@@ -122,16 +122,17 @@ func chatbot(b *tgbotapi.BotAPI) {
 		if update.Message.Sticker != nil {
 			log.Printf("Имя стикера: [%s]", update.Message.Sticker.Emoji)
 		}
-
 		if update.Message.Chat.IsPrivate() {
-			if tmpID[i] != update.Message.Chat.ID {
-				i++
+			if tmpID[count] != update.Message.Chat.ID {
+				count++
+			} else if count == len(tmpID) {
+				count = 1
 			}
-			log.Printf("№ в очереди: [%s]", strconv.Itoa(i))
-			tmpID[i] = update.Message.Chat.ID
+			log.Printf("№ в очереди: [%s]", strconv.Itoa(count))
+			tmpID[count] = update.Message.Chat.ID
 			reply = fmt.Sprintf(
 				"*Переадрисовано от:* _%s_ _%s_\n"+"`в очереди: %d`\n\n"+"%s",
-				update.Message.From.FirstName, update.Message.From.LastName, i, update.Message.Text)
+				update.Message.From.FirstName, update.Message.From.LastName, count, update.Message.Text)
 			msg := tgbotapi.NewMessage(ido, reply)
 			msg.ParseMode = "markdown"
 			b.Send(msg)
@@ -146,8 +147,8 @@ func chatbot(b *tgbotapi.BotAPI) {
 
 			switch update.Message.Command() {
 			case "start":
-				usgroup = update.Message.From.ID
-				for j := 0; j <= len(tmpID); j++ {
+				usGroup = update.Message.From.ID
+				for j := 0; j < len(tmpID); j++ {
 					if update.Message.CommandArguments() == strconv.Itoa(j) {
 						flg = true
 						reply = fmt.Sprintf("*%s*\n"+"*Специалист:* _%s_\n", "Добрый день. С вами общается:",
@@ -156,7 +157,7 @@ func chatbot(b *tgbotapi.BotAPI) {
 						msg.ParseMode = "markdown"
 						// отправляем
 						b.Send(msg)
-						a = j
+						app = j
 						break
 					} else if update.Message.CommandArguments() == "" {
 						reply = fmt.Sprintf("`Укажите номер очереди`")
@@ -171,7 +172,7 @@ func chatbot(b *tgbotapi.BotAPI) {
 				if flg {
 					flg = false
 					reply = fmt.Sprintf("`Чат завершен`")
-					msg := tgbotapi.NewMessage(tmpID[i], reply)
+					msg := tgbotapi.NewMessage(tmpID[count], reply)
 					msg.ParseMode = "markdown"
 					// отправляем
 					b.Send(msg)
@@ -191,17 +192,17 @@ func chatbot(b *tgbotapi.BotAPI) {
 				// отправляем
 				b.Send(msg)
 			}
-			if flg && usgroup == update.Message.From.ID {
-				if update.Message.Text == "/start "+strconv.Itoa(a) {
+			if flg && usGroup == update.Message.From.ID {
+				if update.Message.Text == "/start "+strconv.Itoa(app) {
 					continue
 				}
-				msg := tgbotapi.NewMessage(tmpID[a], update.Message.Text)
+				msg := tgbotapi.NewMessage(tmpID[app], update.Message.Text)
 				b.Send(msg)
 				if update.Message.Document != nil {
-					b.Send(tgbotapi.NewDocumentShare(tmpID[a],update.Message.Document.FileID))
+					b.Send(tgbotapi.NewDocumentShare(tmpID[app],update.Message.Document.FileID))
 				}
 				if update.Message.Sticker != nil {
-					b.Send(tgbotapi.NewStickerShare(tmpID[a],update.Message.Sticker.FileID))
+					b.Send(tgbotapi.NewStickerShare(tmpID[app],update.Message.Sticker.FileID))
 				}
 			}
 		}
