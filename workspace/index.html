@@ -57,8 +57,8 @@
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
           </ul>
-          <a class="navbar-brand" data-toggle="modal" href="#portfolioModal1">Let's speek</a>
         </div>
+        <a class="navbar-brand" data-toggle="modal" href="#portfolioModal1">Let's speek</a>
       </div>
     </nav>
 
@@ -749,21 +749,21 @@
                       <fieldset class="form-fieldset ui-input __first">
                         <input name="name" type="text" id="username" tabindex="0" autocomplete="off"/>
                         <label for="username">
-                          <span data-text="Введите ваше имя">Введите ваше имя</span>
+                          <span data-text="Представтесь">Представтесь</span>
                         </label>
                       </fieldset>
 
                       <fieldset class="form-fieldset ui-input __second">
-                        <input name="phone" type="tel" id="phone" tabindex="0" pattern="^[ 0-9]+$" autocomplete="off"/>
+                        <input name="phone" type="tel" id="phone" tabindex="0" pattern="^([0-9]+$|\@+$)" oninvalid="setCustomValidity('Ник в телеграм: @test или телефон: 37544XXXXXXX')" oninput="setCustomValidity('')" autocomplete="off"/>
                         <label for="phone">
-                          <span data-text="Введите ваш телефон">Введите ваш телефон</span>
+                          <span data-text="@Ник в телеграме или телефон">@Ник в телеграме или телефон</span>
                         </label>
                       </fieldset>
 
                       <fieldset class="form-fieldset ui-input __third">
                         <textarea name="messages" id="messages" rows="3" tabindex="0"></textarea>
                         <label for="messages">
-                          <span data-text="Введите сообщение">Введите сообщение</span>
+                          <span data-text="Сообщение">Сообщение</span>
                         </label>
                       </fieldset>
 
@@ -798,6 +798,7 @@
     <script src="js/agency.min.js"></script>
     <script src="js/owl.carousel.js"></script>
     <script src="js/form.js"></script>
+
   </body>
 
 </html>

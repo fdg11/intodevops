@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"gopkg.in/telegram-bot-api.v4"
 	"log"
 	"os"
@@ -10,32 +9,37 @@ import (
 	"path"
 	"html/template"
 	"time"
+	"encoding/json"
+	"strconv"
 )
 
 var (
-	telegramBotToken string // токен
-	chatID int64 // чат id
-	mapMsg map[string]string = make(map[string]string) // карта полей формы
+	tmpID[10] int64
+	flg bool
+	i int = 0
 )
-
-func init() {
-	// принимаем на входе флаги -telegrambottoken и chatid
-	flag.StringVar(&telegramBotToken, "telegrambottoken", "", "Telegram Bot Token")
-	flag.Int64Var(&chatID, "chatid", 0, "chatId to send messages")
-	flag.Parse()
-	// без токена не запускаемся
-	if telegramBotToken == "" {
-		log.Print("-telegrambottoken is required")
-		os.Exit(1)
-	}
-	// без чат id не запускаемся
-	if chatID == 0 {
-		log.Print("-chatid is required")
-		os.Exit(1)
-	}
+type Config struct {
+	TelegramBotToken string
+	ChatIdSite int64  `json:",string"`
+	ChatIdOnline int64 `json:",string"`
 }
 
-func client(w http.ResponseWriter, _ *http.Request) {
+func conf(f string) (string, int64, int64) {
+	file, ok := os.Open(f)
+	if ok != nil {
+		log.Panic(ok)
+	}
+	decoder := json.NewDecoder(file)
+	config := Config{}
+	err := decoder.Decode(&config)
+	if err != nil {
+		log.Panic(err)
+	}
+
+	return config.TelegramBotToken, config.ChatIdSite, config.ChatIdOnline
+}
+
+func index(w http.ResponseWriter, _ *http.Request) {
 	// создаем шаблон
 	fp := path.Join("", "/workspace/index.html")
 	tmpl, err := template.ParseFiles(fp)
@@ -49,9 +53,10 @@ func client(w http.ResponseWriter, _ *http.Request) {
 	}
 }
 
-func process(w http.ResponseWriter, r *http.Request) {
+func sendForm(w http.ResponseWriter, r *http.Request) {
 	// используя токен создаем новый инстанс бота
-	bot, err := tgbotapi.NewBotAPI(telegramBotToken)
+	token, ids, _ :=conf("config.json")
+	bot, err := tgbotapi.NewBotAPI(token)
 	if err != nil {
 		log.Panic(err)
 	}
@@ -59,16 +64,12 @@ func process(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	// Пишем лог парсинга формы
 	log.Printf("Test name: %s", r.PostForm)
-	// Получаем данные из формы
-	mapMsg["name"] = r.PostFormValue("name")
-	mapMsg["phone"] = r.PostFormValue("phone")
-	mapMsg["message"] = r.PostFormValue("messages")
 	// Проверка на заполнение (Доработать!)
-	if mapMsg["name"] == "" {
+	if r.PostFormValue("name") == "" {
 		fmt.Fprintln(w, "Не заполнено поле \"Ваше Имя\"")
-	} else if len(mapMsg["phone"]) > 12 || mapMsg["phone"] == ""  {
+	} else if len(r.PostFormValue("phone")) > 12 || r.PostFormValue("phone") == ""  {
 		fmt.Fprintln(w, "Не заполнено поле \"Телефон\", либо не коретно введен номер")
-	} else if mapMsg["message"] == "" {
+	} else if r.PostFormValue("messages") == "" {
 		fmt.Fprintln(w, "Не заполнено поле \"Сообщение\"")
 	} else {
 		fmt.Fprintln(w, "<span class=\"_success\">Сообщение отправлено!</span>")
@@ -79,10 +80,10 @@ func process(w http.ResponseWriter, r *http.Request) {
 				"*Телефон:* _%s_\n" +
 				"*Сообщение:* %s\n",
 				"Сообщение с сайта",
-				mapMsg["name"],
-				mapMsg["phone"],
-				mapMsg["message"])
-		msg := tgbotapi.NewMessage(chatID, text)
+			r.PostFormValue("name"),
+			r.PostFormValue("phone"),
+			r.PostFormValue("messages"))
+		msg := tgbotapi.NewMessage(ids, text)
 		// Парсем в "Markdown"
 		msg.ParseMode = "markdown"
 		// Отправляем
@@ -90,8 +91,9 @@ func process(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func chatbot(b tgbotapi.BotAPI) {
-	// Создаем конфиг для общения с бото
+func chatbot(b *tgbotapi.BotAPI) {
+	_, _, ido := conf("config.json")
+	// Создаем конфиг для общения с ботом
 	u := tgbotapi.NewUpdate( 0)
 	u.Timeout = 60
 	// используя конфиг u создаем канал в который будут прилетать новые сообщения
@@ -103,46 +105,119 @@ func chatbot(b tgbotapi.BotAPI) {
 	// вычитываем их и обрабатываем
 	for update := range updates {
 		// универсальный ответ на любое сообщение (Доработать!)
-		reply := "Не знаю что сказать"
+		reply := ""
 		if update.Message == nil {
 			continue
 		}
 		// логируем от кого какое сообщение пришло
-		log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
-		log.Printf("[%s] %s", update.Message.Chat.ID, update.Message.Text)
-		// свитч на обработку комманд (Доработать!)
-		// комманда - сообщение, начинающееся с "/"
-		switch update.Message.Command() {
-		case "start":
-			reply = "Привет. Я телеграм-бот"
-		case "hello":
-			reply = "world"
+		log.Printf("[%s]_[%s]", update.Message.Chat.Title, update.Message.Chat.Type)
+		log.Printf("[%s]", update.Message.From.FirstName)
+		log.Printf("[%d]", update.Message.From.ID)
+		log.Printf("[%d] %s", update.Message.Chat.ID, update.Message.Text)
+		log.Printf("[%s]", strconv.Itoa(i))
+
+
+
+		if update.Message.Chat.IsPrivate() {
+			if tmpID[i] != update.Message.Chat.ID {
+				i++
+			}
+			tmpID[i] = update.Message.Chat.ID
+			reply = fmt.Sprintf(
+				"*Переадрисовано от:* _%s_ _%s_\n"+"`в очереди: %d`\n\n"+"%s",
+				update.Message.From.FirstName, update.Message.From.LastName, i, update.Message.Text)
+			msg := tgbotapi.NewMessage(ido, reply)
+			msg.ParseMode = "markdown"
+			b.Send(msg)
+			if update.Message.Document != nil {
+				b.Send(tgbotapi.NewDocumentShare(ido,update.Message.Document.FileID))
+			}
+			if update.Message.Sticker != nil {
+				b.Send(tgbotapi.NewStickerShare(ido,update.Message.Sticker.FileID))
+			}
+
+		} else {
+
+			switch update.Message.Command() {
+			case "start":
+				switch update.Message.CommandArguments() {
+				case strconv.Itoa(i):
+					flg = true
+					reply = fmt.Sprintf("*%s*\n"+"*Специалист:* _%s_\n", "Добрый день. С вами общается:",
+						update.Message.From.FirstName)
+					msg := tgbotapi.NewMessage(tmpID[i], reply)
+					msg.ParseMode = "markdown"
+					// отправляем
+					b.Send(msg)
+				default:
+					reply = fmt.Sprintf("`Укажите номер очереди`")
+					msg := tgbotapi.NewMessage(ido, reply)
+					msg.ParseMode = "markdown"
+					// отправляем
+					b.Send(msg)
+				}
+			case "stop":
+				if flg {
+					flg = false
+					reply = fmt.Sprintf("`Чат завершен`")
+					msg := tgbotapi.NewMessage(tmpID[i], reply)
+					msg.ParseMode = "markdown"
+					// отправляем
+					b.Send(msg)
+				} else {
+					reply = fmt.Sprintf("`Вы не начали чат с клиентом`\n"+"``` /help - для спавки```")
+					msg := tgbotapi.NewMessage(ido, reply)
+					msg.ParseMode = "markdown"
+					// отправляем
+					b.Send(msg)
+				}
+			case "help":
+				reply = fmt.Sprintf("*Воспользуйтесь следующими командами для общения с клиентом:*\n"+
+					"``` /start [номер в очереди...] - команда запустит чат с клиентом по номеру очереди```\n"+
+						"``` /stop - прекратит текущий чат с клиентом```")
+				msg := tgbotapi.NewMessage(ido, reply)
+				msg.ParseMode = "markdown"
+				// отправляем
+				b.Send(msg)
+			}
+			if flg {
+				if update.Message.Text == "/start "+strconv.Itoa(i) {
+					continue
+				}
+				msg := tgbotapi.NewMessage(tmpID[i], update.Message.Text)
+				b.Send(msg)
+				if update.Message.Document != nil {
+					b.Send(tgbotapi.NewDocumentShare(tmpID[i],update.Message.Document.FileID))
+				}
+				if update.Message.Sticker != nil {
+					b.Send(tgbotapi.NewStickerShare(tmpID[i],update.Message.Sticker.FileID))
+				}
+			}
 		}
-		// создаем ответное сообщение
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, reply)
-		//msg.ReplyToMessageID = update.Message.MessageID
-		// отправляем
-		b.Send(msg)
 	}
 }
 
 func main() {
+	token, ids, ido := conf("config.json")
 	// используя токен создаем новый инстанс бота
-	bot, err := tgbotapi.NewBotAPI(telegramBotToken)
+	bot, err := tgbotapi.NewBotAPI(token)
 	if err != nil {
 		log.Panic(err)
 	}
+	// горутина
+	go chatbot(bot)
+	//time log
 	loc, _ := time.LoadLocation("Europe/Minsk")
 	date := time.Now().In(loc).Format(time.RFC3339)
 	// пишем лог авторизации бота
 	log.Printf("Authorized on account %s", bot.Self.UserName)
+	log.Printf("Token: %s; IdSite %d; IdOnline %d", token, ids, ido)
 	// Отправляем сообщение в телеграм, что бот активен
-	bot.Send(tgbotapi.NewMessage(chatID, fmt.Sprintf("%s: %s", date, "Бот запущен, ожидаются сообщения")))
+	bot.Send(tgbotapi.NewMessage(ids, fmt.Sprintf("%s: %s", date, "Бот запущен, ожидаются сообщения")))
 	// Горутина для общения с ботом
-	go chatbot(*bot)
 	// Включаем сервер, прописываем роуты, статику
-	http.HandleFunc("/", client)
-	http.HandleFunc("/process", process)
+	http.HandleFunc("/", index)
+	http.HandleFunc("/process", sendForm)
 	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("/workspace/css"))))
 	http.Handle("/img/", http.StripPrefix("/img/", http.FileServer(http.Dir("/workspace/img"))))
 	http.Handle("/js/", http.StripPrefix("/js/", http.FileServer(http.Dir("/workspace/js"))))
