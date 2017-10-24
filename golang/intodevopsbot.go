@@ -14,42 +14,20 @@ import (
 )
 
 var (
-	tmpID = map[int]map[string]int64{}
- 	count int = 0
-	usGroupId = map[string]int{}
-	join bool
+	tmpID[10] int64
+	flg bool
+	count int = 0
+	app int
+	usGroup int
 )
-
 type Config struct {
 	TelegramBotToken string
 	ChatIdSite int64  `json:",string"`
 	ChatIdOnline int64 `json:",string"`
 }
 
-func replyMsg(text string, id int64) tgbotapi.MessageConfig {
-	reply := fmt.Sprintf(text)
-	msg := tgbotapi.NewMessage(id, reply)
-	msg.ParseMode = "markdown"
-	return msg
-}
-
-/*func removeAtIndex(source []int, index int) []int {
-	if index == 0 {
-		source = source[1:]
-	} else {
-		for i, v := range source {
-			if v == index {
-				copy(source[i:], source[i+1:])
-				source[len(source)-1] = 0
-				source = source[:len(source)-1]
-			}
-		}
-	}
-	return source
-}*/
-
-func conf(fileDir string) (string, int64, int64) {
-	file, ok := os.Open(fileDir)
+func conf(f string) (string, int64, int64) {
+	file, ok := os.Open(f)
 	if ok != nil {
 		log.Panic(ok)
 	}
@@ -115,7 +93,7 @@ func sendForm(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func chatBot(b *tgbotapi.BotAPI) {
+func chatbot(b *tgbotapi.BotAPI) {
 	_, _, ido := conf("config.json")
 	// Создаем конфиг для общения с ботом
 	u := tgbotapi.NewUpdate( 0)
@@ -144,38 +122,17 @@ func chatBot(b *tgbotapi.BotAPI) {
 		if update.Message.Sticker != nil {
 			log.Printf("Имя стикера: [%s]", update.Message.Sticker.Emoji)
 		}
-
-		if update.Message.Chat.IsPrivate() && !update.Message.IsCommand() {
-			loop:
-			for n:=0 ; n < len(tmpID); n++ {
-				for _, id := range tmpID[n] {
-					if id == update.Message.Chat.ID {
-						log.Printf("№ в очереди: [%d]", n)
-						reply = fmt.Sprintf(
-							"*Переадрисовано от:* _%s_ _%s_\n"+"`в очереди: %d`\n\n"+"%s",
-							update.Message.From.FirstName, update.Message.From.LastName, n, update.Message.Text)
-						join = true
-						log.Println(tmpID)
-						log.Println("Cчетчик: ", count)
-						log.Println(join)
-						break loop
-					} else {
-						join = false
-					}
-				}
-			}
-			if !join {
-				tmpID[count] = map[string]int64{}
-				tmpID[count][update.Message.From.FirstName+" "+update.Message.From.LastName] = update.Message.Chat.ID
-				log.Printf("№ в очереди: [%d]", count)
-				log.Println(tmpID)
-				log.Println("Cчетчик: ", count)
-				log.Println(join)
-				reply = fmt.Sprintf(
-					"*Переадрисовано от:* _%s_ _%s_\n"+"`в очереди: %d`\n\n"+"%s",
-					update.Message.From.FirstName, update.Message.From.LastName, count, update.Message.Text)
+		if update.Message.Chat.IsPrivate() {
+			if tmpID[count] != update.Message.Chat.ID {
 				count++
+			} else if count == len(tmpID) {
+				count = 1
 			}
+			log.Printf("№ в очереди: [%s]", strconv.Itoa(count))
+			tmpID[count] = update.Message.Chat.ID
+			reply = fmt.Sprintf(
+				"*Переадрисовано от:* _%s_ _%s_\n"+"`в очереди: %d`\n\n"+"%s",
+				update.Message.From.FirstName, update.Message.From.LastName, count, update.Message.Text)
 			msg := tgbotapi.NewMessage(ido, reply)
 			msg.ParseMode = "markdown"
 			b.Send(msg)
@@ -186,104 +143,66 @@ func chatBot(b *tgbotapi.BotAPI) {
 				b.Send(tgbotapi.NewStickerShare(ido,update.Message.Sticker.FileID))
 			}
 
-		} else if update.Message.Chat.IsGroup() {
+		} else {
+
 			switch update.Message.Command() {
 			case "start":
+				usGroup = update.Message.From.ID
 				for j := 0; j < len(tmpID); j++ {
 					if update.Message.CommandArguments() == strconv.Itoa(j) {
+						flg = true
 						reply = fmt.Sprintf("*%s*\n"+"*Специалист:* _%s_\n", "Добрый день. С вами общается:",
 							update.Message.From.FirstName)
-						for _, id := range tmpID[j] {
-							msg := tgbotapi.NewMessage(id, reply)
-							msg.ParseMode = "markdown"
-							b.Send(msg)
-						}
-						log.Println(usGroupId)
-						usGroupId[update.Message.From.FirstName] = j
-						log.Println(usGroupId)
+						msg := tgbotapi.NewMessage(tmpID[j], reply)
+						msg.ParseMode = "markdown"
+						// отправляем
+						b.Send(msg)
+						app = j
 						break
 					} else if update.Message.CommandArguments() == "" {
-						b.Send(replyMsg("`Укажите номер очереди`\n"+"``` /help - для справки```", ido))
-						break
-					}
-					arg, err := strconv.Atoi(update.Message.CommandArguments())
-					if err != nil {
-						log.Panic(err)
-						break
-					}
-					if arg >= count {
-						b.Send(replyMsg("`Очереди не существует`\n"+"``` /help - для справки```", ido))
+						reply = fmt.Sprintf("`Укажите номер очереди`")
+						msg := tgbotapi.NewMessage(ido, reply)
+						msg.ParseMode = "markdown"
+						// отправляем
+						b.Send(msg)
 						break
 					}
 				}
 			case "stop":
-				if len(usGroupId) != 0 {
-					for key, value := range usGroupId {
-						if key == update.Message.From.FirstName {
-							reply = fmt.Sprintf("*Чат c*"+" _%s_ "+"*завершен.*", key)
-							for _, id := range tmpID[value] {
-								msg := tgbotapi.NewMessage(id, reply)
-								msg.ParseMode = "markdown"
-								b.Send(msg)
-							}
-							delete(usGroupId, update.Message.From.FirstName)
-							log.Println(usGroupId)
-							break
-						} else {
-							continue
- 						}
-					}
+				if flg {
+					flg = false
+					reply = fmt.Sprintf("`Чат завершен`")
+					msg := tgbotapi.NewMessage(tmpID[count], reply)
+					msg.ParseMode = "markdown"
+					// отправляем
+					b.Send(msg)
 				} else {
-					b.Send(replyMsg("`Все очереди свободны либо Вы не заняли очередь`", ido))
-				}
-			case "list":
-				b.Send(replyMsg("`Занятых:`", ido))
-				for keyQ, _ := range tmpID {
-					for key, value := range usGroupId {
-						if keyQ == value {
-							reply = fmt.Sprintf("``` %s, занял очередь: %d```", key, value)
-							msg := tgbotapi.NewMessage(ido, reply)
-							msg.ParseMode = "markdown"
-							b.Send(msg)
-						}
-					}
-				}
-				b.Send(replyMsg("`Всего очередей:`", ido))
-				for keyQ, valueQ :=range tmpID {
-					for name, _ := range valueQ {
-						reply = fmt.Sprintf("```  Очеред: %d, клиент: %s```", keyQ, name)
-						msg := tgbotapi.NewMessage(ido, reply)
-						msg.ParseMode = "markdown"
-						b.Send(msg)
-					}
+					reply = fmt.Sprintf("`Вы не начали чат с клиентом`\n"+"``` /help - для спавки```")
+					msg := tgbotapi.NewMessage(ido, reply)
+					msg.ParseMode = "markdown"
+					// отправляем
+					b.Send(msg)
 				}
 			case "help":
-				b.Send(replyMsg("*Воспользуйтесь следующими командами для общения с клиентом:*\n"+
+				reply = fmt.Sprintf("*Воспользуйтесь следующими командами для общения с клиентом:*\n"+
 					"``` /start [номер в очереди...] - команда запустит чат с клиентом по номеру очереди```\n"+
-					"``` /stop - прекратит текущий чат с клиентом```\n"+
-					"``` /list - выводит список занятых очередей специалистами```", ido))
+						"``` /stop - прекратит текущий чат с клиентом```")
+				msg := tgbotapi.NewMessage(ido, reply)
+				msg.ParseMode = "markdown"
+				// отправляем
+				b.Send(msg)
 			}
-			if len(usGroupId) != 0 {
-				for key, value := range usGroupId {
-					if key == update.Message.From.FirstName {
-						if update.Message.IsCommand() {
-							continue
-						}
-						for _, id := range tmpID[value] {
-							msg := tgbotapi.NewMessage(id, update.Message.Text)
-							b.Send(msg)
-							if update.Message.Document != nil {
-								b.Send(tgbotapi.NewDocumentShare(id, update.Message.Document.FileID))
-							}
-							if update.Message.Sticker != nil {
-								b.Send(tgbotapi.NewStickerShare(id, update.Message.Sticker.FileID))
-							}
-						}
-						log.Println(usGroupId)
-//						log.Println(usGroupFlg)
-						log.Println(tmpID)
-						break
-					}
+			if flg && usGroup == update.Message.From.ID {
+				if update.Message.Text == "/start "+strconv.Itoa(app) {
+					continue
+				}
+				msg := tgbotapi.NewMessage(tmpID[app], update.Message.Text)
+				b.Send(msg)
+				if update.Message.Document != nil {
+					b.Send(tgbotapi.NewDocumentShare(tmpID[app],update.Message.Document.FileID))
+				}
+				if update.Message.Sticker != nil {
+					b.Send(tgbotapi.NewStickerShare(tmpID[app],update.Message.Sticker.FileID))
 				}
 			}
 		}
@@ -298,7 +217,7 @@ func main() {
 		log.Panic(err)
 	}
 	// горутина
-	go chatBot(bot)
+	go chatbot(bot)
 	//time log
 	loc, _ := time.LoadLocation("Europe/Minsk")
 	date := time.Now().In(loc).Format(time.RFC3339)
