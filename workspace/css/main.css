@@ -96,13 +96,13 @@ a:focus {
 }
 .btn,
 button {
-  padding: 7px 30px;
+/*  padding: 7px 30px;
   border: 0px;
   border-radius: 0px;
   font-weight: 400;
   background: #3399CC;
   color: #fff;
-  font-size: 13px;
+  font-size: 13px; */
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
@@ -186,9 +186,9 @@ button:hover {
 .btn-radius {
   border-radius: 5px;
 }
-.media-left{
+/*.media-left{
   padding-right: 10px;
-}
+}*/
 .img-circle{
   border-radius: 50%;
 }
@@ -818,9 +818,9 @@ i:hover {
   -webkit-animation-name: fadeInUpMenu;
   animation-name: fadeInUpMenu;
 }
-.navbar {
+/*.navbar {
   padding: 0px;
-}
+}*/
 .nav-inline .nav-item + .nav-item {
   margin-left: 0px;
 
@@ -972,12 +972,13 @@ ul li > ul > li.active > a {
 .slicknav_menu {
   display: none;
 }
+/*
 @media screen and (max-width: 767px) {
   .navbar-brand {
     position: absolute;
     top: 12px;
   }
-  /* #menu is the original menu */
+  /* #menu is the original menu
   #wpb-mobile-menu {
     display: none;
   }
@@ -986,11 +987,11 @@ ul li > ul > li.active > a {
   }
 }
 /* SlickMenu responsive */
-@media screen and (max-width: 768px) {
+/*@media screen and (max-width: 768px) {
   .navbar-toggler{
     display: none;
   }
-}
+}*/
 .top_search_con {
   background: #fff;
   height: 38px;
@@ -3129,13 +3130,13 @@ ul.contact-info2 i.fa {
   background: rgba(0, 0, 0, 0.47);
 }*/
 /* Tablet Layout: 768px. */
-@media only screen and (min-width: 768px) and (max-width: 991px) { 
-  #main-menu ul > li > a {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  #mainNav ul > li > a {
     font-size: 13px;
     font-weight: 400;
     padding: 28px 10px;
   }
-  #main-menu ul .dropdown .dropdown-menu a {
+  #mainNav ul .dropdown .dropdown-menu a {
     border-top: 1px solid #e2e6e7;
     color: #666;
     display: block;
@@ -3250,12 +3251,12 @@ ul.contact-info2 i.fa {
     margin-left: 0;
     float: none;
   }
-  #main-menu ul .dropdown .dropdown-menu {
+  #mainNav ul .dropdown .dropdown-menu {
     display: block;
     position: relative;
     width: 100%;
   }
-  #main-menu {
+  #mainNav {
     clear: both;
     width: 100%;
   }
@@ -3278,7 +3279,7 @@ ul.contact-info2 i.fa {
   #roof {
     display: none;
   }
-  #main-menu ul > li > a {
+  #mainNav ul > li > a {
     font-size: 12px !important;
     padding: 18px 10px;
   }
@@ -3288,9 +3289,13 @@ ul.contact-info2 i.fa {
   .footer-widget {
     margin-bottom: 40px;
   }
-  .carousel-item > img {
-    height: 100% !important;
+  /*.carousel-item > img {
+    height: 10% !important;
+  }*/
+  #carousel-area .carousel-item {
+    height: 400px;
   }
+
   #carousel-area .carousel-item .carousel-caption h2 {
     font-size: 20px;
     font-weight: 600;

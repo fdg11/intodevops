@@ -39,10 +39,11 @@ section {
     text-transform: none;
     font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
-@media (min-width: 768px) {
+/*@media(min-width:768px) {
   section {
-    padding: 150px 0; } }
-
+    padding: 150px 0;
+  }
+}*/
 ::-moz-selection {
   background: #3399CC;
   text-shadow: none; }
@@ -433,6 +434,11 @@ header.masthead {
     text-transform: none; }
   .team-member p {
     margin-top: 0; }
+
+section#kubernetes {
+  background-image: url("../img/kubernetes.png");
+  background-repeat: no-repeat;
+  background-position: bottom right; }
 
 section#contact {
   background-color: #222222;
