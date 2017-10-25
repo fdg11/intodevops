@@ -1,6 +1,6 @@
 /*Область формы*/
 .formArea {
-  width: 30vmax;
+  width: 80%;
   margin: 0 auto;
   padding: 10px 15px 10px 15px;
   text-align: center;
@@ -332,11 +332,11 @@
 }
 
 
-/* Large Devices, Wide Screens */
+/* Large Devices, Wide Screens
 @media only screen and (max-width : 1199px) {}
-/* Medium Devices, Desktops */
+/* Medium Devices, Desktops
 @media only screen and (max-width : 991px) {}
-/* Small Devices, Tablets */
+/* Small Devices, Tablets
 @media only screen and (max-width : 768px) {}
-/* Extra Small Devices, Phones */
+/* Extra Small Devices, Phones
 @media only screen and (max-width : 486px) {}
