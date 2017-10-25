@@ -29,3 +29,11 @@ services:
       - go
     links:
       - go
+  portainer:
+      image: portainer/portainer
+      container_name: portainer
+      volumes:
+        - /opt/portainer:/data
+        - /var/run/docker.sock:/var/run/docker.sock
+      ports:
+        - "9000:9000"
