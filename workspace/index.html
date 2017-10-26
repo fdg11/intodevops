@@ -153,7 +153,7 @@
               <i class="fa fa-cogs fa-stack-1x  text-primary"></i>
             </span>
             <h4 class="service-heading">Автоматизация процессов c помощью DevOps</h4>
-            <p class="text-muted">Применяем технологий с открытым исходным кодом, такие как Ansible, Docker, Kubernetes для упрощения развертываниея приложений и управления конфигурацией . Shell, bash scripting для автоматизации процессов.
+            <p class="text-muted">Применяем технологии с открытым исходным кодом, такие как Ansible, Docker, Kubernetes для упрощения развертываниея приложений и управления конфигурацией . Shell, bash scripting для автоматизации процессов.
               Внедрение истем контроля версий Git, SVN.
             </p>
           </div>
@@ -293,10 +293,10 @@
               </div>
               <div class="featured-content">
                 <h4>
-                  configuration management
+                  load balancing
                 </h4>
                 <p>
-                  Автоматизация обновления конфигураций компонентов инфраструктуры (при добавлении/удалении новых сущностей сервисов.
+                  Kubernetes создает отдельные контейнеры с IP-адресами и единому DNS-имени для набора контейнеров и может балансировать нагрузку по ним.
                 </p>
               </div>
             </div>
@@ -316,7 +316,7 @@
                   Logging
                 </h4>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua.
+                  Сбор, хранение, а так же аналитика и визуализация лог-файлов в Kubernetes реализована на базе ELK.
                 </p>
               </div>
             </div>
@@ -336,7 +336,7 @@
                   Metrics
                 </h4>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua.
+                  В Kubernetes реализованы все функции, необходимые для сбора и анализа метрик на основе Prometheus.
                 </p>
               </div>
             </div>
@@ -356,7 +356,7 @@
                   anti vendor lock-in
                 </h4>
                 <p>
-                  Отсутствует какая либо привязка к вендору. Захотели переехать с AWS - переехали.
+                  Отсутствует какая либо зависимость от выбранного «поставщика решения»: облачного провайдера, bare metal.
                 </p>
               </div>
             </div>
@@ -386,7 +386,7 @@
                 </div>
                 <div class="col-lg-5">
                   <div class="feature-item">
-                    <p class="text-muted">Навыки AWS и GCP  на уровне экспертов, консультации и внедрение. Опыт работы Heroku, Azure и Hetzner.</p>
+                    <p class="text-muted">Обладаем навыками работы с AWS и GCP на уровне экспертов, консультации и внедрение. Опыт работы Heroku, Azure и Hetzner.</p>
                   </div>
                 </div>
                 <div class="col-lg-1">
@@ -394,7 +394,7 @@
                 </div>
                 <div class="col-lg-5">
                   <div class="feature-item">
-                    <p class="text-muted">Мы активно работаем с различными инструментами виртуализации  Linux KVM под управлением libvirt (или OpenStack в случае больших инсталляций) и контейнеризации Docker.  </p>
+                    <p class="text-muted">Мы активно работаем с различными инструментами виртуализации Linux KVM под управлением libvirt, OpenStack в случае больших инсталляций, Vmware и контейнеризации Docker.  </p>
                   </div>
                 </div>
                 <div class="col-lg-1">
@@ -402,7 +402,7 @@
                 </div>
                 <div class="col-lg-5">
                   <div class="feature-item">
-                    <p class="text-muted">Наша команда DevOps разрабатывает и внедряет различные системы автоматизированной сборки ПО.</p>
+                    <p class="text-muted">Наша команда DevOps разрабатывает архитектуру и внедряет различные системы автоматизированной сборки ПО на всех этапах от начальной оценки и проектирования, до внедрения проекта на серверах заказчиков.</p>
                   </div>
                 </div>
                 <div class="col-lg-1">
@@ -410,7 +410,7 @@
                 </div>
                 <div class="col-lg-5">
                   <div class="feature-item">
-                    <p class="text-muted">Надежные планы аварийного восстановления. В качестве инструментов мониторинга инфраструктуры и прогнозирования возможных изменений используем Zabbix, Nagios, Graphite, и др.</p>
+                    <p class="text-muted">Надежные планы аварийного восстановления. В качестве инструментов мониторинга инфраструктуры и прогнозирования возможных изменений используем ELK, Prometheus, Nagios, и др.</p>
                   </div>
                 </div>
                 <div class="col-lg-1">
@@ -418,7 +418,7 @@
                 </div>
                 <div class="col-lg-5">
                   <div class="feature-item">
-                    <p class="text-muted">Мы комплексно подойдем к настройке с функционала и производительности веб-проекта.Оптимизация производительности и highload. Отказоустойчивость, кластеры, сложные архитектурные решения.</p>
+                    <p class="text-muted">Комплексно подойдем к настройке функционала и производительности веб-проекта. Оптимизруем производительность уже запущенных проектов и подготовим к высоким нагрузкам.</p>
                   </div>
                 </div>
                 <div class="col-lg-1">
@@ -538,34 +538,24 @@
     <section class="bg-light py-5" id ="instruments">
       <div class="container">
         <div class="row">
-          <div class="col-md-2 col-sm-6">
+          <div class="col-md-3 col-sm-6">
             <a href="#">
-              <img class="img-fluid d-block mx-auto" src="img/logos/mini-icon-AWS.png" alt="">
+              <img class="img-fluid d-block mx-auto" src="img/logos/envato.jpg" alt="">
             </a>
           </div>
-          <div class="col-md-2 col-sm-6">
+          <div class="col-md-3 col-sm-6">
             <a href="#">
-              <img class="img-fluid d-block mx-auto" src="img/logos/mini-icon-GCP.png" alt="">
+              <img class="img-fluid d-block mx-auto" src="img/logos/designmodo.jpg" alt="">
             </a>
           </div>
-          <div class="col-md-2 col-sm-6">
+          <div class="col-md-3 col-sm-6">
             <a href="#">
-              <img class="img-fluid d-block mx-auto" src="img/logos/mini-icon-kubernetes.png" alt="">
+              <img class="img-fluid d-block mx-auto" src="img/logos/themeforest.jpg" alt="">
             </a>
           </div>
-          <div class="col-md-2 col-sm-6">
+          <div class="col-md-3 col-sm-6">
             <a href="#">
-              <img class="img-fluid d-block mx-auto" src="img/logos/mini-icon-docker.png" alt="">
-            </a>
-          </div>
-          <div class="col-md-2 col-sm-6">
-            <a href="#">
-              <img class="img-fluid d-block mx-auto" src="img/logos/mini-icon-git.png" alt="">
-            </a>
-          </div>
-          <div class="col-md-2 col-sm-6">
-            <a href="#">
-              <img class="img-fluid d-block mx-auto" src="img/logos/mini-icon-ansible.png" alt="">
+              <img class="img-fluid d-block mx-auto" src="img/logos/creative-market.jpg" alt="">
             </a>
           </div>
         </div>
@@ -640,7 +630,7 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="team-member">
-              <img class="mx-auto rounded-circle" src="img/team/3.jpg" alt="">
+              <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="">
               <h4>Larry Parker</h4>
               <p class="text-muted">Lead Marketer</p>
               <ul class="list-inline social-buttons">
@@ -664,7 +654,7 @@
           </div>
           <div class="col-sm-6">
             <div class="team-member">
-              <img class="mx-auto rounded-circle" src="img/team/3.jpg" alt="">
+              <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="">
               <h4>Larry Parker</h4>
               <p class="text-muted">Lead Marketer</p>
               <ul class="list-inline social-buttons">
@@ -791,9 +781,9 @@
                       </fieldset>
 
                       <fieldset class="form-fieldset ui-input __second">
-                        <input name="phone" type="tel" id="phone" tabindex="0" pattern="^[0-9]+$" oninvalid="setCustomValidity('Пример телефонного номерадля ввода: 37544XXXXXXX')" oninput="setCustomValidity('')" autocomplete="off"/>
+                        <input name="phone" type="tel" id="phone" tabindex="0" pattern="^([0-9]+$|\@+$)" oninvalid="setCustomValidity('Ник в телеграм: @test или телефон: 37544XXXXXXX')" oninput="setCustomValidity('')" autocomplete="off"/>
                         <label for="phone">
-                          <span data-text="Телефон">Телефон</span>
+                          <span data-text="@Ник в телеграме или телефон">@Ник в телеграме или телефон</span>
                         </label>
                       </fieldset>
 
