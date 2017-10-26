@@ -791,7 +791,7 @@
                       </fieldset>
 
                       <fieldset class="form-fieldset ui-input __second">
-                        <input name="mail" type="email" id="mail" tabindex="0" oninvalid="setCustomValidity('Не правильно заполнен e-mail')" oninput="setCustomValidity('')" autocomplete="off"/>
+                        <input name="mail" type="email" id="mail" tabindex="0" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" oninvalid="setCustomValidity('Не правильно заполнен e-mail')" oninput="setCustomValidity('')" autocomplete="off"/>
                         <label for="mail">
                           <span data-text="E-mail">E-mail</span>
                         </label>
