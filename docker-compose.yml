@@ -17,7 +17,7 @@ services:
     ports:
       - "8080:8080"
   proxy:
-    image: nginx:latest
+    image: nginx:stable-alpine
     container_name: proxy
     restart: always
     volumes:
