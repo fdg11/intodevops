@@ -228,6 +228,7 @@ header.masthead {
   min-height: 100%;
   padding: 100px 0;
   text-align: center;
+  color: ivory;
   border: none;
   border-radius: 0;
   background-clip: border-box;
@@ -235,12 +236,14 @@ header.masthead {
   box-shadow: none; }
   .portfolio-modal .modal-content h2 {
     font-size: 3em;
+    color: ivory;
     margin-bottom: 15px; }
   .portfolio-modal .modal-content p {
     margin-bottom: 30px; }
   .portfolio-modal .modal-content p.item-intro {
     font-size: 16px;
     font-style: italic;
+    color: ivory;
     margin: 20px 0 30px;
     font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
   .portfolio-modal .modal-content ul.list-inline {

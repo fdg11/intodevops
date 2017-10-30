@@ -80,10 +80,10 @@ a {
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
-a:hover {
+/*a:hover {
   color: #a22f30;
   text-decoration: none;
-}
+}*/
 a:focus {
   outline: none;
   text-decoration: none;

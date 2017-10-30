@@ -54,7 +54,7 @@
               <a class="nav-link js-scroll-trigger" href="#contact">Контакты</a>
             </li>
           </ul>
-            <a class="btn btn-ls btn-outline-light" data-toggle="modal" href="#portfolioModal1">
+            <a class="btn btn-ls btn-outline-light" data-toggle="modal" href="#Modal1">
               <i class="fa fa-send"></i>
               Let's speek
             </a>
@@ -73,7 +73,7 @@
               <img src="img/bg.png" alt="">
               <div class="carousel-caption">
                 <h2>
-                  Автоматизация деплоя
+                  Автоматизация деплоя.
                 </h2>
                 <h3 class="mb-3">
                   Позаботимся о вашей инфраструктуре, чтобы вы могли вернуться к созданию продукта, который приносит доход.
@@ -87,7 +87,7 @@
               <img src="img/bg.png" alt="">
               <div class="carousel-caption">
                 <h2>
-                  Все построено с Kubernetes
+                  Все построено с Kubernetes.
                 </h2>
                 <h3 class="mb-3">
                   Выстроим, оптимизируем, а затем будем поддерживать вашу инфраструктуру.
@@ -145,7 +145,7 @@
             <p class="text-muted">Выстраивание и сопровождение процессов CI/CD,
               применение подхода Infrastructure as Code (IaC),
               создание рабочего окружения для разработчиков,
-              разворачивание staging, production серверов.
+              разворачивание staging, production серверовю
               Подготовка ифраструктыры для высоких нагрузок (highload).</p>
           </div>
           <div class="col-md-4">
@@ -498,7 +498,7 @@
               <li class="timeline-inverted">
                 <div class="timeline-image">
                   <h4>
-                    <i class="fa fa-4x fa-send" data-toggle="modal" href="#portfolioModal1"><a data-toggle="modal" href="#portfolioModal1"></a></i>
+                    <i class="fa fa-4x fa-send"><a data-toggle="modal" href="#Modal1"></a></i>
                     </h4>
                 </div>
               </li>
@@ -556,180 +556,52 @@
 
     <!-- Price -->
     <!-- Расширить таблицу с прайсом в стороны - расширил выглядит неочень -->
-    <style>
-       .prices-head h2 {
-         font-size: 2em;
-         color: #68AE00;
-         margin:0em 0em 1em 0.4em;
-         font-family: 'Carrois Gothic', sans-serif;
-       }
-       .price-list ul {
-         padding: 0px;
-         list-style: none;
-       }
-       .price-gd-top {
-         background:#3399CC;
-         text-align: center;
-         border-radius: 5px 5px 0px 0px;
-       }
-       .price-gd-top h4 {
-         font-size: 1.8em;
-         color: #fff;
-         padding: 0.4em 1em;
-         background:#222222;
-         border-radius: 5px 5px 0px 0px;
-         font-family: 'Carrois Gothic', sans-serif;
-       }
-       .price-gd-top h3 {
-         padding: 0.4em 0em;
-         font-size: 3.3em;
-         color: #fff;
-         font-family: 'Carrois Gothic', sans-serif;
-       }
-       span.usa-dollar {
-         font-size: 0.4em;
-         vertical-align: top;
-       }
-       span.per-month {
-         font-size: 0.4em;
-       }
-       .price-gd-top h5 {
-         font-size: 1em;
-         color: #fff;
-         padding: 0.2em 0em 0.8em 0em;
-         font-family: 'Carrois Gothic', sans-serif;
-       }
-       .price-gd-bottom {
-         background: #fff;
-         text-align: center;
-         padding: 1em 0em;
-       }
-       .price-list ul li {
-         padding: 0.5em 0em;
-         font-size: 1em;
-         color: #545454;
-       }
-       .price-selet {
-         padding: 1em 0em;
-         text-align: center;
-         background: #3399CC;
-         border-radius: 0px 0px 5px 5px;
-       }
-       .price-selet a {
-         font-size: 1.1em;
-         color: #fff;
-         display: block;
-       }
-       .price-selet a {
-         font-size: 1.1em;
-         color: #fff;
-         display:block;
-       }
-       .price-grid {
-         margin-bottom: 3em;
-       }
-       .pric-clr1 h4 {
-         background:#545454;
-       }
-
-       .pric-clr1 {
-         background:#3399CC;
-       }
-       .pric-clr3 h4 {
-         background: #CC660E;
-       }
-       .pric-clr3 {
-         background: #E07D28;
-       }
-       .price-block {
-         box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.15);
-         transition: 0.5s all;
-         -webkit-transition: 0.5s all;
-         -moz-transition: 0.5s all;
-         -o-transition: 0.5s all;
-       }
-       .price-block:hover {
-         transform: scale(1.1);
-         -webkit-transform: scale(1.1);
-         -moz-transform: scale(1.1);
-         -o-transform: scale(1.1);
-         -ms-transform: scale(1.1);
-         z-index: 1;
-       }
-       a.popup-with-zoom-anim {
-         outline: none;
-         text-decoration:none !important;
-       }
-       /*@media (max-width:1024px){
-         .price-gd-top h4 {
-           font-size: 1.4em;
-         }
-         .price-gd-top h3 {
-           font-size: 2.8em;
-         }
-         .price-list ul li {
-           font-size: 0.8em;
-         }
-         .price-selet a {
-           font-size: 1em;
-         }
-       }
-       @media (max-width:991px){
-         .price-grid {
-           margin-bottom: 2em;
-           float: left;
-           width: 50%;
-         }
-       }
-       @media (max-width:480px){
-         .price-grid {
-           padding: 0px 19px 0px 0px;
-         }
-         .price-grid {
-           margin-bottom: 1.5em;
-           float: none;
-           width: 100%;
-         }
-       }
-       @media (max-width:320px){
-         .prices-head h2 {
-           font-size: 1.7em;
-           margin: 0em 0em 0.5em 0.4em;
-         }
-       } */
-    </style>
-
     <section id="price">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading">Кстати о ценах:</h2>
-            <h3 class="section-subheading text-muted">Стоимось внедрения и сопровождения проектов рассчитывается индивидуально, так как зависит от многих факторов, таких как имеющиеся процессы и инфраструктура, масштабы проекта и используемые технологии, предъявляемые требования к CD, планы по развитию и т.п.</h3>
+            <h3 class="section-subheading text-muted">Стоимось сопровождения проектов рассчитывается индивидуально, поскольку зависит от множества факторов, таких как имеющиеся процессы и инфраструктура, масштабы проекта и используемые технологии, предъявляемые требования к CD, планы по развитию и т.п.</h3>
           </div>
         </div>
         <div class="row justify-content-md-center">
-          <div class="col-md-5 price-grid">
-            <div class="price-block">
-              <div class="price-gd-top pric-clr2">
-                <h4>Стартуем от:</h4>
-                <h3><span class="usa-dollar">$</span> 500<span class="per-month">/месяц</span></h3>
-                <h5>годовой договор</h5>
+          <div class="col-md-5">
+            <div class="list-group text-center bg-alt">
+              <div href="#" class="list-group-item text-white bg-dark">
+                <h4 class="text-center my-1">Стартуем от:<br></h4>
               </div>
-              <div class="price-gd-bottom">
-                <div class="price-list">
-                  <ul>
-                    <li>Настройка кластера Kubernetes в облаке провайдера или bare metal </li>
-                    <li>Настройка СI/CD в виде GitLab либо интеграция с уже имеющимся SVN</li>
-                    <li>Настройка окрудений: Dev, Staging, Prod</li>
-                    <li>Небольшие доработки на Go, Bash, Yaml</li>
-                    <li>Поддержка в рабочее время</li>
-                  </ul>
-                </div>
+              <div class="list-group-item text-uppercase font-weight-bold">
+                <h2 class="text-primary text-center my-1">500$/месяц</h2>
               </div>
-              <div class="price-selet pric-clr2">
-                <a class="popup-with-zoom-anim" data-toggle="modal" href="#portfolioModal1">Заказать</a>
-              </div>
-              </div>
+              <a class="list-group-item">
+                Установка платформы включена
+              </a>
+              <a class="list-group-item">
+                2 Кубернетовые кластеры, рабочие и производственные
+              </a>
+              <a  class="list-group-item">
+                3 Среды, разработка, постановка и производство
+              </a>
+              <a  class="list-group-item">
+                Централизованное ведение журнала с помощью ELK
+              </a>
+              <a  class="list-group-item">
+                Интеграция с Route53 или облачным DNS
+              </a>
+              <a class="list-group-item">
+                Поддержка в рабочее время
+              </a>
+            </div>
+          </div>
+          </div>
+        <div class="row">
+          <div class="col-lg-12 text-center">
+          <div class="featured-box">
+            <br />
+            <a class="btn btn-lg btn-secondary" data-toggle="modal" href="#Modal1">
+              Сделайте заказ
+            </a>
+          </div>
           </div>
         </div>
       </div>
@@ -745,14 +617,15 @@
             <h2 class="section-heading text-uppercase">Наша команда</h2>
             <h3 class="section-subheading text-muted">
               Мы - небольшая группа опытных, целеустремленных и ориентированных на DevOps специалистов. Наша компания старается предоставить вам лучший сервис, такой же как и внутренняя команда. Испытайте нас!</h3>
+
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-6">
             <div class="team-member">
-              <img class="mx-auto rounded-circle" src="img/team/3.jpg" alt="">
-              <h4>Александр Панасюк</h4>
-              <p class="text-muted">Linux инженер</p>
+              <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="">
+              <h4>Larry Parker</h4>
+              <p class="text-muted">Lead Marketer</p>
               <ul class="list-inline social-buttons">
                 <li class="list-inline-item">
                   <a href="#">
@@ -772,7 +645,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-6">
             <div class="team-member">
               <img class="mx-auto rounded-circle" src="img/team/4.jpg" alt="">
               <h4>Андрей Кисель</h4>
@@ -823,7 +696,7 @@
         </div>
         <div class="row">
           <div class="col-lg-8 mx-auto text-center">
-            <p class="large text-muted">Мы начали с простого видения: упростить с помощью автоматизации веб-операции, используя наш мнеголетний опыт в крупномасштабных проектах. Мы полагаем, что каждая компания SaaS должна иметь такую же ифраструктуру, как Netflix и Google, или стремится к этому ) - масштабированные и адаптированные к их размеру. Практически это означает полностью автоматизированую инфраструктуру, контейнерное развертывание, непрерывное развертывание, лучшую эргономику разработчика которая обеспечивает более быстрое время выхода на рынок и повышение рентабельности.</p>
+            <p class="large text-muted">Мы начали с простого видения: преобразовать веб-операции, используя наши десятилетия крупномасштабных операций и опыта. Мы полагаем, что каждая компания SaaS должна иметь такую же потрясающую продукцию, как Etsy, Netflix и Google, - масштабированные и адаптированные к их размеру. Практически это означает полностью автоматизированные инфраструктуры, контейнерное развертывание, непрерывное развертывание, лучшую эргономику разработчика, а также нашу уникальную модель DevOps-as-a-Service, которая обеспечивает более быстрое время выхода на рынок и повышение рентабельности.</p>
           </div>
         </div>
       </div>
@@ -836,19 +709,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading"></h2>
-            <h3 class="section-subheading text-muted"> </h3>
+            <h2 class="section-heading">Контакты</h2>
+            <h3 class="section-subheading text-muted"></h3>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-12">
-            TEL: 8(017) 388 06 68
-            VEL: 8(029) 194 03 49
-            e-mail: info@intodevops.by
-            WWW: intodevopst.by
-            Skype: intodevops.by
-            Telegram: intodevops
-            Социальные сети: Git, in,
           </div>
         </div>
       </div>
@@ -861,7 +727,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <span class="copyright">Copyright &copy; Your Website 2017</span>
+            <span class="copyright">&copy; intoDevOps 2017</span>
           </div>
           <div class="col-md-4">
             <ul class="list-inline social-buttons">
@@ -885,10 +751,12 @@
           <div class="col-md-4">
             <ul class="list-inline quicklinks">
               <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
+                <a href="#Modal2" data-toggle="modal">Банковские реквезиты</a>
               </li>
               <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
+                <a class="js-scroll-trigger" href="#page-top">
+                  <i class="fa fa-angle-double-up fa-2x" aria-hidden="true"></i>
+                </a>
               </li>
             </ul>
           </div>
@@ -898,7 +766,7 @@
     <!-- End Footer -->
 
   <!-- Modal 1 -->
-  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="portfolio-modal modal fade" id="Modal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -959,6 +827,32 @@
       </div>
     </div>
 
+    <!-- Modal 2 -->
+    <div class="portfolio-modal modal fade" id="Modal2" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl"></div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <div class="modal-body">
+                  <!-- Project Details Go Here -->
+                  <h2>Реквезиты</h2>
+                  <p class="item-intro"> одлолдодло
+                  лждждлджлжд
+                    ждлжлжлдждлждл</p> jfjhgjhghjgjhg
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
@@ -969,7 +863,6 @@
 
     <!-- Contact form JavaScript -->
     <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="js/agency.min.js"></script>
