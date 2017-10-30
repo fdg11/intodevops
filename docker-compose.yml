@@ -17,7 +17,7 @@ services:
     ports:
       - "8080:8080"
   proxy:
-    image: nginx:latest
+    image: nginx:stable-alpine
     container_name: proxy
     restart: always
     volumes:
@@ -32,6 +32,7 @@ services:
   portainer:
       image: portainer/portainer
       container_name: portainer
+      restart: always
       volumes:
         - /opt/portainer:/data
         - /var/run/docker.sock:/var/run/docker.sock
