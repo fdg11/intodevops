@@ -53,6 +53,9 @@
       -moz-transition: all 0.3s;
       transition: all 0.3s;
     }
+    .nav-href {
+            padding: 0.5em 1em !important;
+    }
     .navbar-nav {
       .nav-item {
         .nav-link {

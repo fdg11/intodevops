@@ -10,6 +10,7 @@
     <!-- Поменять - Поменял-->
     <title>IntoDevOps - ВАША СОБСТВЕННАЯ КОМАНДА ИНЖЕНЕРОВ В СРЕДЕ DEVOPS: СОЗДАЕМ НАДЕЖНЫЕ ПЛАТФОРМЫ И ПОДДЕРЖИВАЕМ ИХ</title>
 
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png.png">
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -19,7 +20,7 @@
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" type='text/css'>
     <!-- Custom styles for this template -->
     <link href="css/agency.min.css" rel="stylesheet">
     <link href="css/owl/owl.carousel.css" rel="stylesheet">
@@ -45,19 +46,20 @@
               <a class="nav-link js-scroll-trigger" href="#services">Сервисы</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#kubernetes">Решения</a>
+              <a class="nav-link js-scroll-trigger" href="#kubernetes">Услуги</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#team">О нас</a>
+              <a class="nav-link js-scroll-trigger" href="#approach">Подход</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Контакты</a>
             </li>
           </ul>
-            <a class="btn btn-ls btn-outline-light" data-toggle="modal" href="#portfolioModal1">
-              <i class="fa fa-send"></i>
-              Let's speek
-            </a>
+          &numsp;
+          <a class="btn btn-ls btn-outline-light nav-href" data-toggle="modal" href="#Modal1">
+            <i class="fa fa-send"></i>
+            Let's speak
+          </a>
         </div>
       </div>
     </nav>
@@ -172,12 +174,11 @@
     <!-- End Services -->
 
     <!-- Kubernetes -->
-    <!-- Разобраться с ненужными классами анимации иконок -->
     <section id="kubernetes">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Почему мы выбираем Kubernetes?</h2>
+            <h2 class="section-heading">Рекомендуем Kubernetes!</h2>
             <h3 class="section-subheading text-muted"> Мы можем помочь вам увеличить скорость, безопасность и доступность вашего приложения с помощью лучших практик использования Kubernetes в DevOps.</h3>
           </div>
         </div>
@@ -241,7 +242,9 @@
               </div>
             </div>
           </div>
+        </div>
           <!-- End featured Icon 3 -->
+        <div class="row">
           <!-- Start featured Icon 4 -->
           <div class="col-md-4 col-sm-6 wow fadeInUpQuick" data-wow-delay=".4s" data-animation="fadeIn" data-animation-delay="01">
             <div class="featured-box">
@@ -301,6 +304,8 @@
             </div>
           </div>
           <!-- End featured Icon 6 -->
+        </div>
+        <div class="row justify-content-center">
           <!-- Start featured Icon 7 -->
           <div class="col-md-4 col-sm-6 wow fadeInUpQuick" data-wow-delay=".6s" data-animation="fadeIn" data-animation-delay="01">
             <div class="featured-box">
@@ -328,7 +333,7 @@
 
     <!-- Approach -->
     <!-- Продумать иконки  -->
-    <section class="bg-light" id="approach">
+    <section class="bg-light" id="consulting">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -398,7 +403,7 @@
 
     <!-- About -->
     <!-- Почему разные расстояния между иконками "шагов" - зависит от количества текста ( секция сама маштабируется) -->
-    <section class="bg-dark" id="about">
+    <section class="bg-dark" id="approach">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -476,7 +481,7 @@
               <li class="timeline-inverted">
                 <div class="timeline-image">
                   <h4>
-                    <i class="fa fa-4x fa-send" data-toggle="modal" href="#portfolioModal1"><a data-toggle="modal" href="#portfolioModal1"></a></i>
+                    <i class="fa fa-4x fa-send"><a data-toggle="modal" href="#Modal1"></a></i>
                     </h4>
                 </div>
               </li>
@@ -494,7 +499,7 @@
 
     <!-- Instruments -->
     <!-- Разобраться со стилями, дать понятное название секции -->
-    <section class="bg-light py-5" id ="instruments">
+    <section class="bg-light py-5" id ="tools">
       <div class="container">
         <div class="row">
           <div class="col-md-2 col-sm-6">
@@ -533,150 +538,6 @@
     <!-- End Instruments -->
 
     <!-- Price -->
-    <!-- Расширить таблицу с прайсом в стороны - расширил выглядит неочень -->
-    <style>
-       .prices-head h2 {
-         font-size: 2em;
-         color: #68AE00;
-         margin:0em 0em 1em 0.4em;
-         font-family: 'Carrois Gothic', sans-serif;
-       }
-       .price-list ul {
-         padding: 0px;
-         list-style: none;
-       }
-       .price-gd-top {
-         background:#3399CC;
-         text-align: center;
-         border-radius: 5px 5px 0px 0px;
-       }
-       .price-gd-top h4 {
-         font-size: 1.8em;
-         color: #fff;
-         padding: 0.4em 1em;
-         background:#222222;
-         border-radius: 5px 5px 0px 0px;
-         font-family: 'Carrois Gothic', sans-serif;
-       }
-       .price-gd-top h3 {
-         padding: 0.4em 0em;
-         font-size: 3.3em;
-         color: #fff;
-         font-family: 'Carrois Gothic', sans-serif;
-       }
-       span.usa-dollar {
-         font-size: 0.4em;
-         vertical-align: top;
-       }
-       span.per-month {
-         font-size: 0.4em;
-       }
-       .price-gd-top h5 {
-         font-size: 1em;
-         color: #fff;
-         padding: 0.2em 0em 0.8em 0em;
-         font-family: 'Carrois Gothic', sans-serif;
-       }
-       .price-gd-bottom {
-         background: #fff;
-         text-align: center;
-         padding: 1em 0em;
-       }
-       .price-list ul li {
-         padding: 0.5em 0em;
-         font-size: 1em;
-         color: #545454;
-       }
-       .price-selet {
-         padding: 1em 0em;
-         text-align: center;
-         background: #3399CC;
-         border-radius: 0px 0px 5px 5px;
-       }
-       .price-selet a {
-         font-size: 1.1em;
-         color: #fff;
-         display: block;
-       }
-       .price-selet a {
-         font-size: 1.1em;
-         color: #fff;
-         display:block;
-       }
-       .price-grid {
-         margin-bottom: 3em;
-       }
-       .pric-clr1 h4 {
-         background:#545454;
-       }
-
-       .pric-clr1 {
-         background:#3399CC;
-       }
-       .pric-clr3 h4 {
-         background: #CC660E;
-       }
-       .pric-clr3 {
-         background: #E07D28;
-       }
-       .price-block {
-         box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.15);
-         transition: 0.5s all;
-         -webkit-transition: 0.5s all;
-         -moz-transition: 0.5s all;
-         -o-transition: 0.5s all;
-       }
-       .price-block:hover {
-         transform: scale(1.1);
-         -webkit-transform: scale(1.1);
-         -moz-transform: scale(1.1);
-         -o-transform: scale(1.1);
-         -ms-transform: scale(1.1);
-         z-index: 1;
-       }
-       a.popup-with-zoom-anim {
-         outline: none;
-         text-decoration:none !important;
-       }
-       /*@media (max-width:1024px){
-         .price-gd-top h4 {
-           font-size: 1.4em;
-         }
-         .price-gd-top h3 {
-           font-size: 2.8em;
-         }
-         .price-list ul li {
-           font-size: 0.8em;
-         }
-         .price-selet a {
-           font-size: 1em;
-         }
-       }
-       @media (max-width:991px){
-         .price-grid {
-           margin-bottom: 2em;
-           float: left;
-           width: 50%;
-         }
-       }
-       @media (max-width:480px){
-         .price-grid {
-           padding: 0px 19px 0px 0px;
-         }
-         .price-grid {
-           margin-bottom: 1.5em;
-           float: none;
-           width: 100%;
-         }
-       }
-       @media (max-width:320px){
-         .prices-head h2 {
-           font-size: 1.7em;
-           margin: 0em 0em 0.5em 0.4em;
-         }
-       } */
-    </style>
-
     <section id="price">
       <div class="container">
         <div class="row">
@@ -686,26 +547,37 @@
           </div>
         </div>
         <div class="row justify-content-md-center">
-          <div class="col-md-5 price-grid">
+          <div class="col-md-7 price-grid">
             <div class="price-block">
               <div class="price-gd-top pric-clr2">
-                <h4>Стартуем от:</h4>
-                <h3><span class="usa-dollar">$</span> 500<span class="per-month">/месяц</span></h3>
+                <h4>DevOps-as-service</h4>
+                <h3><span class="usa-dollar">от $</span> 500<span class="per-month">/месяц</span></h3>
                 <h5>годовой договор</h5>
               </div>
               <div class="price-gd-bottom">
                 <div class="price-list">
                   <ul>
-                    <li>Настройка кластера Kubernetes в облаке провайдера или bare metal </li>
-                    <li>Настройка СI/CD в виде GitLab либо интеграция с уже имеющимся SVN</li>
-                    <li>Настройка окрудений: Dev, Staging, Prod</li>
-                    <li>Небольшие доработки на Go, Bash, Yaml</li>
-                    <li>Поддержка в рабочее время</li>
+                    <li>
+                      <span class="text-primary"><b>Deployment Kubernetes:</b></span><br />
+                      Настройка кластера Kubernetes в облаке или bare metal (не более 2-ух master-node)
+                    </li>
+                    <li>
+                      <span class="text-primary"><b>Deployment append:</b></span><br />
+                      Интеграция СI/CD, VCS: на базе GitLab, помошь в постраении "WorkFlow"<br />
+                      Настройка окружений: Staging, Prod<br />
+                      Описание инфраструктуры по методологии IaC (ansible.yaml)<br />
+                      Интеграция metrics, alerts: на базе Prometheus+Grafana (оповещение на slack, e-mail)
+                    </li>
+                    <li>
+                      <span class="text-primary"><b>Support:</b></span><br />
+                      Поддержка в рабочее время, помошь в модификации архитектуры<br />
+                      с учетом новых планов по развитию Вашего продукта
+                    </li>
                   </ul>
                 </div>
               </div>
               <div class="price-selet pric-clr2">
-                <a class="popup-with-zoom-anim" data-toggle="modal" href="#portfolioModal1">Заказать</a>
+                <a class="popup-with-zoom-anim" data-toggle="modal" href="#Modal1">Заказать</a>
               </div>
               </div>
           </div>
@@ -715,7 +587,6 @@
     <!-- End Price -->
 
     <!-- Team -->
-    <!-- Подумать над размещением участников и описанием их деятельности -->
     <section class="bg-light" id="team">
       <div class="container">
         <div class="row">
@@ -801,7 +672,7 @@
         </div>
         <div class="row">
           <div class="col-lg-8 mx-auto text-center">
-            <p class="large text-muted">Мы начали с простого видения: упростить с помощью автоматизации веб-операции, используя наш опыт в крупномасштабных проектах. Мы полагаем, что каждая компания SaaS должна иметь такую же ифраструктуру, как Netflix и Google, или стремится к этому ) - масштабированные и адаптированные к их размеру. Практически это означает полностью автоматизированую инфраструктуру, контейнерное развертывание, непрерывное развертывание, лучшую эргономику разработчика которая обеспечивает более быстрое время выхода на рынок и повышение рентабельности.</p>
+           <!-- <p class="large text-muted">Мы начали с простого видения: упростить с помощью автоматизации веб-операции, используя наш опыт в крупномасштабных проектах. Мы полагаем, что каждая компания SaaS должна иметь такую же ифраструктуру, как Netflix и Google, или стремится к этому ) - масштабированные и адаптированные к их размеру. Практически это означает полностью автоматизированую инфраструктуру, контейнерное развертывание, непрерывное развертывание, лучшую эргономику разработчика которая обеспечивает более быстрое время выхода на рынок и повышение рентабельности.</p> -->
           </div>
         </div>
       </div>
@@ -809,31 +680,49 @@
     <!-- End Team -->
 
     <!-- Contact -->
-    <!-- Проработать стили, примерный вид для размещения -->
-    <section id="contact">
+    <section class="bg-dark py-4" id="contact">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading"></h2>
-            <h3 class="section-subheading text-muted"> </h3>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            TEL: 8(017) 388 06 68
-            VEL: 8(029) 194 03 49
-            e-mail: info@intodevops.by
-            WWW: intodevopst.by
-            Skype: intodevops.by
-            Telegram: intodevops
-            Социальные сети: Git, in,
+          <div class="col-md-12 text-center">
+            <span class="font-phone">
+              <i class="color-fa fa fa-phone-square"></i> 8(017) 388-06-68 &numsp;&numsp;
+              <i class="color-fa fa fa-phone-square"></i> 8(029) 194-03-49 &numsp;&numsp;
+              <i class="color-fa fa fa-envelope"></i> info@intodevops.by
+            </span>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item text-center">
+                <a href="https://telegram.me/intodevopsbot" target="_blank">
+                  <i class="fa fa-send"></i>
+                </a>
+              </li>
+              <li class="list-inline-item text-center">
+                <a href="skype:kisel_andrei?chat">
+                  <i class="fa fa-skype"></i>
+                </a>
+              </li>
+              <li class="list-inline-item text-center">
+                <a href="https://github.com/fdg11" target="_blank">
+                  <i class="fa fa-github-alt"></i>
+                </a>
+              </li>
+              <li class="list-inline-item text-center">
+                <a href="slack://channel?team=T7U048UJ3&id=C7TKEGX9B">
+                  <i class="fa fa-slack"></i>
+                </a>
+              </li>
+              <li class="list-inline-item text-center">
+                <a href="mailto:info@intodevops.by">
+                  <i class="fa fa-envelope"></i>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
     <!-- End Contact -->
 
-    <!-- Так и остовляем  -->
+    <!-- Footer -->
     <footer>
       <div class="container">
         <div class="row">
@@ -843,18 +732,8 @@
           <div class="col-md-4">
             <ul class="list-inline social-buttons">
               <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-facebook"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-linkedin"></i>
+                <a class="js-scroll-trigger" href="#page-top">
+                  <i class="fa fa-angle-double-up"></i>
                 </a>
               </li>
             </ul>
@@ -864,11 +743,6 @@
               <li class="list-inline-item">
                 <a href="#Modal2" data-toggle="modal">Реквезиты</a>
               </li>
-              <li class="list-inline-item">
-                <a class="js-scroll-trigger" href="#page-top">
-                  <i class="fa fa-angle-double-up fa-2x" aria-hidden="true"></i>
-                </a>
-              </li>
             </ul>
           </div>
         </div>
@@ -877,7 +751,7 @@
     <!-- End Footer -->
 
   <!-- Modal 1 -->
-  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="portfolio-modal modal fade" id="Modal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -937,6 +811,7 @@
         </div>
       </div>
     </div>
+
     <!-- Modal 2 -->
     <div class="portfolio-modal modal fade" id="Modal2" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
@@ -966,7 +841,6 @@
         </div>
       </div>
     </div>
-    </div>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
@@ -977,7 +851,6 @@
 
     <!-- Contact form JavaScript -->
     <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="js/agency.min.js"></script>

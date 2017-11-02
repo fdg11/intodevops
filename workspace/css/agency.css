@@ -75,7 +75,7 @@ body {
     text-transform: uppercase; }
   #mainNav .navbar-brand {
     color: #3399CC;
-    font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive; }
+    font-family: 'Dosis', 'Helvetica Neue', Helvetica, Arial, cursive; }
     #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
       color: #297aa3; }
   #mainNav .navbar-nav .nav-item .nav-link {
@@ -103,6 +103,8 @@ body {
       -webkit-transition: all 0.3s;
       -moz-transition: all 0.3s;
       transition: all 0.3s; }
+    #mainNav .nav-href {
+      padding: 0.5em 1em !important; }
     #mainNav .navbar-nav .nav-item .nav-link {
       padding: 1.1em 1em !important; }
     #mainNav.navbar-shrink {
@@ -443,25 +445,118 @@ section#kubernetes {
   background-repeat: no-repeat;
   background-position: bottom right; }
 
+section#price .prices-head h2 {
+  font-size: 2em;
+  color: #68AE00;
+  margin: 0em 0em 1em 0.4em;
+  font-family: 'Carrois Gothic', sans-serif; }
+
+section#price .price-list ul {
+  padding: 0px;
+  list-style: none; }
+
+section#price .price-gd-top {
+  background: #3399CC;
+  text-align: center;
+  border-radius: 5px 5px 0px 0px; }
+
+section#price .price-gd-top h4 {
+  font-size: 1.8em;
+  color: #fff;
+  padding: 0.4em 1em;
+  background: #343a40 !important;
+  border-radius: 5px 5px 0px 0px;
+  font-family: 'Carrois Gothic', sans-serif; }
+
+section#price .price-gd-top h3 {
+  padding: 0.4em 0em;
+  font-size: 3.3em;
+  color: #fff;
+  font-family: 'Carrois Gothic', sans-serif; }
+
+section#price span.usa-dollar {
+  font-size: 0.4em;
+  vertical-align: top; }
+
+section#price span.per-month {
+  font-size: 0.4em; }
+
+section#price .price-gd-top h5 {
+  font-size: 1em;
+  color: #fff;
+  padding: 0.2em 0em 0.8em 0em;
+  font-family: 'Carrois Gothic', sans-serif; }
+
+section#price .price-gd-bottom {
+  background: #fff;
+  text-align: center;
+  padding: 1em 0em; }
+
+section#price .price-list ul li {
+  padding: 0.5em 0em;
+  font-size: 1em;
+  color: #545454; }
+  section#price .price-list ul li .list-price {
+    text-align: left; }
+
+section#price .price-selet {
+  padding: 1em 0em;
+  text-align: center;
+  background: #3399CC;
+  border-radius: 0px 0px 5px 5px; }
+
+section#price .price-selet a {
+  font-size: 1.1em;
+  color: #fff;
+  display: block; }
+
+section#price .price-selet a {
+  font-size: 1.1em;
+  color: #fff;
+  display: block; }
+
+section#price .price-grid {
+  margin-bottom: 3em; }
+
+section#price .pric-clr1 h4 {
+  background: #545454; }
+
+section#price .pric-clr3 h4 {
+  background: #CC660E; }
+
+section#price .price-block {
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.15);
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all; }
+
+section#price .price-block:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  z-index: 1; }
+
+section#price a.popup-with-zoom-anim {
+  outline: none;
+  text-decoration: none !important; }
+
 section#contact {
-  background-color: #222222;
-  background-image: url("../img/map-imag.png");
+  background-image: url("../img/map-image.png");
   background-repeat: no-repeat;
   background-position: center; }
   section#contact .section-heading {
     color: white; }
-  section#contact .form-group {
-    margin-bottom: 25px; }
-    section#contact .form-group input,
-    section#contact .form-group textarea {
-      padding: 20px; }
-    section#contact .form-group input.form-control {
-      height: auto; }
-    section#contact .form-group textarea.form-control {
-      height: 236px; }
-  section#contact .form-control:focus {
-    border-color: #3399CC;
-    box-shadow: none; }
+  section#contact .font-phone {
+    font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.3em;
+    line-height: 70px;
+    text-transform: none;
+    color: #fff; }
+    section#contact .font-phone .color-fa {
+      color: #777777; }
   section#contact ::-webkit-input-placeholder {
     font-weight: 700;
     color: #eeeeee;
@@ -470,13 +565,11 @@ section#contact {
   section#contact :-moz-placeholder {
     font-weight: 700;
     color: #eeeeee;
-    /* Firefox 18- */
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-transform: uppercase; }
   section#contact ::-moz-placeholder {
     font-weight: 700;
     color: #eeeeee;
-    /* Firefox 19+ */
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-transform: uppercase; }
   section#contact :-ms-input-placeholder {
