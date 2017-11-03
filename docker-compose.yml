@@ -7,14 +7,19 @@ services:
     volumes:
       - ./nodejs/install.sh:/workspace/install.sh:ro
       - ./workspace/:/workspace
+    entrypoint:
+      - '/workspace/install.sh'
     ports:
       - "3000:3000"
   go:
-    build: golang/
+    image: fdg11/golang1.9.2-alpine3.6
     container_name: go
     restart: always
     volumes:
+      - ./golang/:/go/src/app
       - ./workspace/:/workspace
+    entrypoint:
+      - '/go/src/app/run.sh'
     ports:
       - "8080:8080"
   proxy:
@@ -28,8 +33,7 @@ services:
       - "80:80"
     depends_on:
       - go
-    links:
-      - go
+      - gulp
   portainer:
       image: portainer/portainer
       container_name: portainer
@@ -38,4 +42,4 @@ services:
         - /opt/portainer:/data
         - /var/run/docker.sock:/var/run/docker.sock
       ports:
-        - "9000:9000"
+        - 9000:9000
