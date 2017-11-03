@@ -1,10 +1,11 @@
 version: '3.3'
 services:
   gulp:
-    build: nodejs/ 
+    image: fdg11/alpine-3.6-gulp-3.9.1
     container_name: gulp
     restart: always
     volumes:
+      - ./nodejs/install.sh:/workspace/install.sh:ro
       - ./workspace/:/workspace
     ports:
       - "3000:3000"
