@@ -21,7 +21,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/conf.d/:/etc/nginx/conf.d:ro
+      - ./nginx/conf.d/:/etc/nginx/conf.d
       - ./nginx/ssl/:/etc/nginx/ssl:rw
       - ./workspace/:/workspace
     entrypoint:
