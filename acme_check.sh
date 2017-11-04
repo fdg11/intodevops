@@ -8,20 +8,30 @@ if [ "$count" -eq "0" ]; then
     docker-compose exec proxy acme.sh --issue -d intodevops.by -d www.intodevops.by -k 4096 -w /workspace
 cat <<EOF > nginx/conf.d/ssl-intodevops.conf
     server {
-    listen 443 ssl http2;
-    server_name intodevops.by www.intodevops.by;
+        listen 443 ssl http2;
+        server_name www.intodevops.by;
+        return 301 https://intodevops.by\$request_uri;
 
-    return 301 \$scheme://intodevops.by\$request_uri;
-    location /.well-known {
-    root /workspace;
+        ssl_certificate ssl/intodevops.by/fullchain.cer;
+        ssl_certificate_key ssl/intodevops.by/intodevops.by.key;
+        include ssl/ssl.conf;
+
     }
 
-    ssl_certificate ssl/intodevops.by/fullchain.cer;
-    ssl_certificate_key ssl/intodevops.by/intodevops.by.key;
-    include ssl/ssl.conf;
+    server {
+        listen 443 ssl http2;
+        server_name intodevops.by;
 
-    location / {
-        proxy_pass http://go:8080;
+        location /.well-known {
+            root /workspace;
+        }
+
+        ssl_certificate ssl/intodevops.by/fullchain.cer;
+        ssl_certificate_key ssl/intodevops.by/intodevops.by.key;
+        include ssl/ssl.conf;
+
+        location / {
+            proxy_pass http://go:8080;
         }
     }
 EOF
