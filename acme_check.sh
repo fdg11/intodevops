@@ -5,7 +5,7 @@ set -e
 count=$(find nginx/ssl/* -type d -name "intodevops.by" | wc -l)
 
 if [ "$count" -eq "0" ]; then
-    docker-compose exec proxy acme.sh --issue -d intodevops.by -d www.intodevops.by -k 4096 -w /workspace
+    docker-compose exec proxy acme.sh --issue -d intodevops.by -d www.intodevops.by -d sub.intudevops.by -k 4096 -w /workspace --force
 cat <<EOF > nginx/conf.d/ssl-intodevops.conf
     server {
         listen 443 ssl http2;
