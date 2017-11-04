@@ -4,7 +4,7 @@ set -e
 
 count=$(find nginx/ssl/* -type d -name "intodevops.by" | wc -l)
 
-if [ "$count" -gt "0" ]; then
+if [ "$count" -eq "0" ]; then
     docker-compose exec proxy acme.sh --issue -d intodevops.by -d www.intodevops.by -k 4096 -w /workspace
     cat <<EOF > nginx/conf.d/ssl-intodevops.conf
     server {
