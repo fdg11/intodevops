@@ -24,8 +24,6 @@ services:
       - ./nginx/conf.d/:/etc/nginx/conf.d
       - ./nginx/ssl/:/etc/nginx/ssl:rw
       - ./workspace/:/workspace
-    entrypoint:
-      - '/etc/nginx/ssl/check.sh'
     ports:
       - "80:80"
       - "443:443"
