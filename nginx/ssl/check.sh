@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-set -ex
+set -e
 
 count=$(find /etc/nginx/ssl/* -type d -name "intodevops.by" | wc -l)
 
