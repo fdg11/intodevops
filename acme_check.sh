@@ -26,4 +26,5 @@ if [ "$count" -eq "0" ]; then
     }
 EOF
     sed -i 's/#return/return/g' nginx/conf.d/intodevops.conf
+    docker-compose exec proxy nginx -s reload
 fi
