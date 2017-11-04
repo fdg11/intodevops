@@ -37,15 +37,6 @@ cat <<EOF > nginx/conf.d/ssl-intodevops.conf
         location / {
             proxy_pass http://go:8080;
         }
-    }
-
-    server {
-        listen 443 ssl http2;
-        server_name sub.intodevops.by;
-
-        ssl_certificate ssl/intodevops.by/fullchain.cer;
-        ssl_certificate_key ssl/intodevops.by/intodevops.by.key;
-        include ssl/ssl.conf;
 
         location /portainer/ {
             proxy_http_version 1.1;

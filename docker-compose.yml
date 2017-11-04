@@ -8,7 +8,7 @@ services:
       - ./golang/:/go/src/app
       - ./workspace/:/workspace
     entrypoint:
-      - '/go/src/app/run.sh'
+      - '/go/src/app/run.sh'пше
   proxy:
     image: magnaz/nginx-acme:1.12-alpine
     container_name: proxy
