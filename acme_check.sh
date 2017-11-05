@@ -38,6 +38,13 @@ cat <<EOF > nginx/conf.d/ssl-intodevops.conf
             proxy_pass http://go:8080;
         }
 
+        location ~* ^.+\.(html|jpeg|jpg|gif|png|css|js|pdf|txt|tar)\$ {
+                root   /workspace;
+                add_header Cache-Control private;
+                expires 30m;
+        }
+
+
         location /portainer/ {
             proxy_http_version 1.1;
             proxy_set_header Host              \$http_host;   # required for docker client's sake
