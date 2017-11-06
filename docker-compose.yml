@@ -1,5 +1,16 @@
 version: '3.3'
 services:
+  gulp:
+    image: fdg11/alpine-3.6-gulp-3.9.1
+    container_name: gulp
+    restart: always
+    volumes:
+      - ./nodejs/install.sh:/workspace/install.sh:ro
+      - ./workspace/:/workspace
+    entrypoint:
+      - '/workspace/install.sh'
+    ports:
+      - "3000:3000"
   go:
     image: fdg11/golang1.9.2-alpine3.6
     container_name: go
@@ -9,24 +20,20 @@ services:
       - ./workspace/:/workspace
     entrypoint:
       - '/go/src/app/run.sh'
+    ports:
+      - "8080:8080"
   proxy:
-    image: magnaz/nginx-acme:1.12-alpine
+    image: nginx:stable-alpine
     container_name: proxy
     restart: always
-    environment:
-      - ACCOUNT_CONF_PATH=/etc/nginx/ssl/acme.sh.conf
     volumes:
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/conf.d/:/etc/nginx/conf.d
-      - ./nginx/ssl/:/etc/nginx/ssl:rw
       - ./workspace/:/workspace
+      - ./nginx/main.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
       - "80:80"
-      - "443:443"
     depends_on:
       - go
+      - gulp
   portainer:
       image: portainer/portainer
       container_name: portainer
@@ -34,3 +41,5 @@ services:
       volumes:
         - /opt/portainer:/data
         - /var/run/docker.sock:/var/run/docker.sock
+      ports:
+        - "9000:9000"
