@@ -70,5 +70,5 @@ EOF
     sed -i 's/#return/return/g' nginx/conf.d/intodevops.conf
     docker-compose -p prod exec proxy nginx -s reload
 else
-    docker-compose -p prod exec proxy nginx -s restart
+    docker-compose -p prod exec proxy nginx restart
 fi
