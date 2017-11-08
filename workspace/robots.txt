@@ -1,0 +1,24 @@
+User-agent: *
+Disallow: /js/
+Disallow: /css/
+Disallow: /mail/
+Disallow: /scss/
+Disallow: /vendor/
+Disallow: *utm=
+Allow: /img/
+
+User-agent: Googlebot
+Disallow: /mail/
+Disallow: /scss/
+Disallow: /vendor/
+Disallow: *utm=
+Allow: /
+
+User-agent: Yandex
+Disallow: /mail/
+Disallow: /scss/
+Disallow: /vendor/
+Disallow: *utm=
+Allow: /
+
+Host: https://intodevops.by
