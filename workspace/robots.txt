@@ -1,23 +1,27 @@
 User-agent: *
 Disallow: /js/
 Disallow: /css/
-Disallow: /mail/
 Disallow: /scss/
 Disallow: /vendor/
+Disallow: /img/
 Disallow: *utm=
-Allow: /img/
+Disallow: /*.json
+Disallow: /gulpfile.js
+Allow: /
 
 User-agent: Googlebot
-Disallow: /mail/
 Disallow: /scss/
 Disallow: /vendor/
+Disallow: /*.json
+Disallow: /gulpfile.js
 Disallow: *utm=
 Allow: /
 
 User-agent: Yandex
-Disallow: /mail/
 Disallow: /scss/
 Disallow: /vendor/
+Disallow: /*.json
+Disallow: /gulpfile.js
 Disallow: *utm=
 Allow: /
 
