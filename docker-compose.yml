@@ -5,10 +5,10 @@ services:
     container_name: gulp
     restart: always
     volumes:
-      - ./nodejs/install.sh:/workspace/install.sh:ro
+      - ./nodejs/install.sh:/install.sh:ro
       - ./workspace/:/workspace
     entrypoint:
-      - '/workspace/install.sh'
+      - '/install.sh'
     ports:
       - "3000:3000"
   go:

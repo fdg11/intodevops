@@ -5,7 +5,7 @@ set -e
 count=$(find nginx/ssl/* -type d -name "intodevops.by" | wc -l)
 
 if [ "$count" -eq "0" ]; then
-    docker-compose exec proxy acme.sh --issue -d intodevops.by -d www.intodevops.by -d sub.intudevops.by -k 4096 -w /workspace --force
+    docker-compose -p prod exec proxy acme.sh --issue -d intodevops.by -d www.intodevops.by -d sub.intudevops.by -k 4096 -w /workspace --force
 cat <<EOF > nginx/conf.d/ssl-intodevops.conf
     upstream portainer {
         server portainer:9000;
@@ -68,7 +68,7 @@ cat <<EOF > nginx/conf.d/ssl-intodevops.conf
     }
 EOF
     sed -i 's/#return/return/g' nginx/conf.d/intodevops.conf
-    docker-compose exec proxy nginx -s reload
+    docker-compose -p prod exec proxy nginx -s reload
 else
-    docker-compose exec proxy nginx -s reload
+    docker-compose -p prod exec proxy nginx -s reload
 fi
