@@ -71,4 +71,5 @@ EOF
     docker-compose -p prod exec proxy nginx -s reload
 else
     docker-compose -p prod exec proxy nginx -s reload
+    docker-compose -p prod exec proxy find /var/cache/nginx/proxy_temp/ -type f -delete
 fi
